@@ -1,0 +1,26 @@
+{
+  "name": "dora",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.35.2",
+    "@astrojs/starlight-tailwind": "^4.0.1",
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.12.8",
+    "cheerio": "^1.1.2",
+    "remark-definition-list": "^2.0.0",
+    "sharp": "^0.34.2",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

@@ -1,0 +1,90 @@
+@layer base, starlight, theme, components, utilities;
+
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+.section-number {
+  @apply text-accent-500 text-lg md:text-2xl block;
+}
+
+.section-name {
+  @apply inline-block border-b-2 border-b-accent-500;
+}
+
+.article-number {
+  @apply text-accent-700 text-base md:text-xl block;
+}
+
+.article-name {
+  @apply inline-block border-b-2 border-b-accent-700;
+}
+
+.sl-markdown-content > ol {
+  @apply list-inside p-0;
+
+  & > li > p {
+    @apply inline;
+  }
+
+  & > li > ol {
+    @apply list-[lower-latin] list-outside mt-0.25;
+
+    & > li > p {
+      @apply inline;
+    }
+
+    & > li > ol {
+      @apply list-[lower-roman] list-outside;
+
+      & > li > p {
+        @apply inline;
+      }
+    }
+  }
+}
+
+.reg-overview-toc {
+  ul {
+    @apply list-none p-0 m-0;
+  }
+
+  a {
+    @apply inline-block w-28 text-right text-accent-500 no-underline border-b-1 border-gray-500 hover:text-gray-500;
+  }
+
+  em {
+    @apply pl-8 not-italic;
+  }
+
+  > ul > li {
+    @apply border-b-1 border-gray-300 pb-8 mb-8;
+    /* Chapter */
+    & > p:first-of-type {
+    @apply mb-4;
+      /* Chapter num + link */
+      & > a {
+        @apply text-xl font-bold border-b-4;
+      }
+      /* Chapter name */
+      & > em {
+        @apply text-xl font-bold;
+      }
+    }
+    
+    /* Section */
+    & > p:not(:first-of-type) {
+    @apply mb-4;
+      /* Section num + link */
+      & > a {
+        @apply text-lg font-semibold border-b-2;
+      }
+      /* Section name */
+      & > em {
+        @apply text-lg font-semibold;
+      }
+    }
+    
+  }
+
+}
