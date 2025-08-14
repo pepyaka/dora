@@ -1,0 +1,18 @@
+---
+import OriginMarkdownContent from "@astrojs/starlight/components/MarkdownContent.astro";
+import RegulationMarkdownContent from "../regulations/MarkdownContent.astro";
+
+const isRegulations = Astro.locals.starlightRoute.id.startsWith("regulations/");
+---
+
+{
+  isRegulations ? (
+    <RegulationMarkdownContent>
+      <slot />
+    </RegulationMarkdownContent>
+  ) : (
+    <OriginMarkdownContent>
+      <slot />
+    </OriginMarkdownContent>
+  )
+}

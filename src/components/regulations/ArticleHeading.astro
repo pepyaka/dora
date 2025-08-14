@@ -1,0 +1,25 @@
+---
+interface Props {
+  number: number;
+}
+
+const { number } = Astro.props;
+---
+
+<h4 class="article-number">Article {number}</h4>
+
+<style is:global>
+  @layer base, starlight, theme, components, utilities;
+
+  @import "@astrojs/starlight-tailwind";
+  @import "tailwindcss/theme.css" layer(theme);
+  @import "tailwindcss/utilities.css" layer(utilities);
+
+  .article-number {
+    @apply text-accent-700 text-base md:text-xl w-max border-b-1 border-b-gray-500;
+  }
+
+  .article-number + div.level-h4 {
+    @apply inline-block;
+  }
+</style>

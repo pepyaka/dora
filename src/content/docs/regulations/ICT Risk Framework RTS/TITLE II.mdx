@@ -1,329 +1,75 @@
 ---
-title: ICT Risk Framework RTS
+title: Further harmonisation of ICT risk management tools, methods, processes, and policies in accordance with Article 15 of regulation (EU) 2022/2554
+banner:
+  content: TITLE II
+sidebar:
+  order: 202
+  badge: TITLE II
+regulation:
+  pageHeadingLevel: TITLE
+  pageArticleStart: 2
+prev: TITLE I
+next: TITLE III
 ---
+import Chapter from "/src/components/regulations/ChapterHeading.astro";
+import Section from "/src/components/regulations/SectionHeading.astro";
+import Article from "/src/components/regulations/ArticleHeading.astro";
 
+<Chapter number="1" />
+## ICT Security policies, procedures, protocols, and tools
 
-2024/1774
-	
+<Section number="1" />
+###
 
-25.6.2024
-
-COMMISSION DELEGATED REGULATION (EU) 2024/1774
-
-of 13 March 2024
-
-supplementing Regulation (EU) 2022/2554 of the European Parliament and of the Council with regard to regulatory technical standards specifying ICT risk management tools, methods, processes, and policies and the simplified ICT risk management framework
-
-(Text with EEA relevance)
-
-THE EUROPEAN COMMISSION,
-
-Having regard to the Treaty on the Functioning of the European Union,
-
-Having regard to Regulation (EU) 2022/2554 of the European Parliament and of the Council of 14 December 2022 on digital operational resilience for the financial sector and amending Regulations (EC) No 1060/2009, (EU) No 648/2012, (EU) No 600/2014, (EU) No 909/2014 and (EU) 2016/1011 (1), and in particular Article 15, fourth subparagraph, and Article 16(3), fourth subparagraph, thereof,
-
-Whereas:
-
-(1)
-	
-
-Regulation (EU) 2022/2554 covers a wide variety of financial entities that differ in size, structure, internal organisation, and in the nature and complexity of their activities, and thus have increased or reduced elements of complexity or risks. To ensure that that variety is duly taken into account, any requirements as regards ICT security policies, procedures, protocols and tools, and as regards a simplified ICT risk management framework, should be proportionate to that size, structure, internal organisation, nature and complexity of those financial entities, and to the corresponding risks.
-
-(2)
-	
-
-For the same reason, financial entities subject to Regulation (EU) 2022/2554 should have a certain flexibility in the way they comply with any requirements as regards ICT security policies, procedures, protocols and tools, and as regards any simplified ICT risk management framework. For that reason, financial entities should be allowed to use any documentation they have already to comply with any documentation requirements that flow from those requirements. It follows that the development, documentation, and implementation of specific ICT security policies should be required only for certain essential elements, taking into account, inter alia, leading industry practices and standards. Furthermore, to cover specific technical implementation aspects, it is necessary to develop, document and implement ICT security procedures to cover specific technical implementation aspects, including capacity and performance management, vulnerability and patch management, data and system security, and logging.
-
-(3)
-	
-
-To ensure the correct implementation over time of ICT security policies, procedures, protocols, and tools referred to in Title II, Chapter I of this Regulation, it is important that financial entities correctly assign and maintain any roles and responsibilities relating to ICT security, and that they lay down the consequences of non-compliance with ICT security policies or procedures.
-
-(4)
-	
-
-To limit the risk of conflicts of interests, financial entities should ensure the segregation of duties when assigning ICT roles and responsibilities.
-
-(5)
-	
-
-To ensure flexibility and to simplify the financial entities’ control framework, financial entities should not be required to develop specific provisions on the consequences of non-compliance with ICT security policies, procedures and protocols referred to in Title II, Chapter I of this Regulation where such provisions are already set out in another policy or procedure.
-
-(6)
-	
-
-In a dynamic environment where ICT risks constantly evolve, it is important that financial entities develop their set of ICT security policies on the basis of leading practices, and where applicable, of standards as defined in Article 2, point (1), of Regulation (EU) No 1025/2012 of the European Parliament and of the Council (2).This should enable financial entities referred to in Title II of this Regulation to remain informed and prepared in a changing landscape.
-
-(7)
-	
-
-To ensure their digital operational resilience, financial entities referred to in Title II of this Regulation should, as part of their ICT security policies, procedures, protocols, and tools, develop and implement an ICT asset management policy, capacity and performance management procedures, and policies and procedures for ICT operations. Those policies and procedures are necessary to ensure the monitoring of the status of ICT assets throughout their lifecycles, so that those assets are used and maintained effectively (ICT asset management). Those policies and procedures should also ensure the optimisation of ICT systems’ operation and that the ICT systems’ and capacity’s performance meets the established business and information security objectives (capacity and performance management). Lastly, those policies and procedures should ensure the effective and smooth day-to-day management and operation of ICT systems (ICT operations), thereby minimising the risk of loss of confidentiality, integrity, and availability of data. Those policies and procedures are thus necessary to ensure the security of networks, to provide for adequate safeguards against intrusions and data misuse, and to preserve the availability, authenticity, integrity, and confidentiality of data.
-
-(8)
-	
-
-To ensure a proper management of the legacy ICT systems risk, financial entities should record and monitor end-dates of ICT third party support services. Because of the potential impact that a loss of confidentiality, integrity and availability of data may have, financial entities should focus on those ICT assets or systems that are critical for business operation when recording and monitoring those end-dates.
-
-(9)
-	
-
-Cryptographic controls can ensure the availability, authenticity, integrity, and confidentiality of data. Financial entities referred to in Title II of this Regulation should therefore identify and implement such controls on the basis of a risk-based approach. To that end, financial entities should encrypt the data concerned at rest, in transit or, where necessary, in use, on the basis of the results of a two-pronged process, namely data classification and a comprehensive ICT risk assessment. Given the complexity of encrypting data in use, financial entities referred to in Title II of this Regulation should encrypt date in use only where that would be appropriate in light of the results of the ICT risk assessment. Financial entities referred to in Title II of this Regulation should, however, be able, where encryption of data in use is not feasible or is too complex, to protect the confidentiality, integrity, and availability of the data concerned through other ICT security measures. Given the rapid technological developments in the field of cryptographic techniques, financial entities referred to in Title II of this Regulation should remain abreast of relevant developments in cryptanalysis and consider leading practices and standards. Financial entities referred to in Title II of this Regulation should hence follow a flexible approach, based on risk mitigation and monitoring, to deal with the dynamic landscape of cryptographic threats, including threats from quantum advancements.
-
-(10)
-	
-
-ICT operations security and operational policies, procedures, protocols, and tools are essential to ensure the confidentiality, integrity, and availability of data. One pivotal aspect is the strict separation of ICT production environments from the environments where ICT systems are developed and tested or from other non-production environments. That separation should serve as an important ICT security measure against unintended and unauthorised access to, modifications of, and deletions of data in the production environment, which could result in major disruptions in the business operations of financial entities referred to in Title II of this Regulation. However, considering current ICT system development practices, in exceptional circumstances, financial entities should be allowed to test in production environments, provided that they justify such testing and obtain the required approval.
-
-(11)
-	
-
-The fast-evolving nature of ICT landscapes, ICT vulnerabilities and cyber threats necessitates a proactive and comprehensive approach to identifying, evaluating, and addressing ICT vulnerabilities. Without such an approach, financial entities, their customers, users, or counterparties may be severely exposed to risks, which would put at risk their digital operational resilience, the security of their networks, and the availability, authenticity, integrity, and confidentiality of data that ICT security policies and procedures should protect. Financial entities referred to in Title II of this Regulation should therefore identify and remedy vulnerabilities in their ICT environment, and both the financial entities and their ICT third-party service providers should adhere to a coherent, transparent, and responsible vulnerability management framework. For the same reason, financial entities should monitor ICT vulnerabilities using reliable resources and automated tools, verifying that ICT third-party service providers ensure prompt action on vulnerabilities in provided ICT services.
-
-(12)
-	
-
-Patch management should be a crucial part of those ICT security policies and procedures that, through testing and deployment in a controlled environment, are to resolve identified vulnerabilities and to prevent disruptions from the installation of patches.
-
-(13)
-	
-
-To ensure timely and transparent communication of potential security threats that could impact the financial entity and its stakeholders, financial entities should establish procedures for the responsible disclosure of ICT vulnerabilities to clients, counterparts, and the public. When establishing those procedures, financial entities should consider factors, including the severity of the vulnerability, the potential impact of such vulnerability on stakeholders, and the readiness of a fix or mitigation measures.
-
-(14)
-	
-
-To allow for the assignment of user access rights, financial entities referred to in Title II of this Regulation should establish strong measures to ascertain the unique identification of individuals and systems that will access the financial entity’s information. A failure to do so would expose financial entities to potential unauthorised access, data breaches, and fraudulent activities, thus compromising the confidentiality, integrity, and availability of sensitive financial data. While the use of generic or shared accounts should exceptionally be permitted under circumstances specified by financial entities, financial entities should ensure that the accountability for actions taken through those accounts is maintained. Without that safeguard, potential malicious users would be able to hinder investigative and corrective measures, leaving financial entities vulnerable to undetected malicious activities or non-compliance penalties.
-
-(15)
-	
-
-To manage the rapid advancement in ICT environments, financial entities referred to in Title II of this Regulation should implement robust ICT project management policies and procedures to maintain data availability, authenticity, integrity, and confidentiality. Those ICT project management policies and procedures should identify the elements that are necessary to successfully manage ICT projects, including changes to, acquisitions of, the maintenance of, and developments of the financial entity’s ICT systems, regardless of the ICT project management methodology chosen by the financial entity. In the context of those policies and procedures, financial entities should adopt testing practices and methods that suit their needs, while adhering to a risk-based approach and ensuring that a secure, reliable, and resilient ICT environment is maintained. To guarantee the secure implementation of an ICT project, financial entities should ensure that staff from specific business sectors or roles influenced or impacted by that ICT project can provide the necessary information and expertise. To ensure effective oversight, reports on ICT projects, in particular about projects that affect critical or important functions and about their associated risks, should be submitted to the management body. Financial entities should tailor the frequency and details of the systematic and ongoing reviews and reports to the importance and the size of the ICT projects concerned.
-
-(16)
-	
-
-It is necessary to ensure that software packages that financial entities referred to in Title II of this Regulation acquire and develop are effectively and securely integrated into the existing ICT environment, in accordance with established business and information security objectives. Financial entities should therefore thoroughly evaluate such software packages. For that purpose, and to identify vulnerabilities and potential security gaps within both software packages and the broader ICT systems, financial entities should carry out ICT security testing. To assess the integrity of the software and to ensure that the use of that software does not pose ICT security risks, financial entities should also review source codes of software acquired, including, where feasible, of proprietary software provided by ICT third-party service providers, using both static and dynamic testing methods.
-
-(17)
-	
-
-Changes, regardless of their scale, carry inherent risks and may pose significant risks of loss of confidentiality, integrity, and availability of data, and could thus lead to severe business disruptions. To safeguard financial entities from potential ICT vulnerabilities and weaknesses that could expose them to significant risks, a rigorous verification process is necessary to confirm that all changes meet the necessary ICT security requirements. Financial entities referred to in Title II of this Regulation should therefore, as an essential element of their ICT security policies and procedures, have in place sound ICT change management policies and procedures. To uphold the objectivity and effectiveness of the ICT change management process, to prevent conflicts of interest, and to ensure that ICT changes are evaluated objectively, it is necessary to separate the functions responsible for approving those changes from the functions that request and implement those changes. To achieve effective transitions, controlled ICT change implementation, and minimal disruptions to the operation of the ICT systems, financial entities should assign clear roles and responsibilities that ensure that ICT changes are planned, adequately tested, and that quality is ensured. To ensure that ICT systems continue to operate effectively, and to provide a safety net for financial entities, financial entities should also develop and implement fall-back procedures. Financial entities should clearly identify those fall-back procedures and assign responsibilities to ensure a swift and effective response in the event of unsuccessful ICT changes.
-
-(18)
-	
-
-To detect, manage, and report ICT-related incidents, financial entities referred to in Title II of this Regulation should establish an ICT-related incident policy encompassing the components of an ICT-related incident management process. For that purpose, financial entities should identify all relevant contacts inside and outside the organisation that can facilitate the correct coordination and implementation of the different phases within that process. To optimise the detection of, and response to, ICT-related incidents, and to identify trends among those incidents, which are a valuable source of information enabling financial entities to identify and address root causes and problems in an effective manner, financial entities should in particular analyse in detail the ICT-related incidents that they consider to be most significant, inter alia, because of their regular reoccurrence.
-
-(19)
-	
-
-To guarantee an early and effective detection of anomalous activities, financial entities referred to in Title II of this Regulation should collect, monitor, and analyse the different sources of information and should allocate related roles and responsibilities. As regards internal sources of information, logs are an extremely relevant source, but financial entities should not rely on logs alone. Instead, financial entities should consider broader information to include what is reported by other internal functions, as those functions are often a valuable source of relevant information. For the same reason, financial entities should analyse and monitor information gathered from external sources, including information provided by ICT third-party providers on incidents affecting their systems and networks, and other sources of information that financial entities consider relevant. In so far as such information constitutes personal data, the Union data protection law applies. The personal data should be limited to what is necessary for the incident detection.
-
-(20)
-	
-
-To facilitate ICT-related incidents detection, financial entities should retain evidence of those incidents. To ensure, on the one hand, that such evidence is retained sufficiently long and to avoid, on the other hand, an excessive regulatory burden, financial entities should determine the retention period considering, among other things, the criticality of the data and retention requirements stemming from Union law.
-
-(21)
-	
-
-To ensure that ICT-related incidents are detected in time, financial entities referred to in Title II of this Regulation should consider the criteria identified for triggering the detection of and responses to ICT-related incidents as not exhaustive. Moreover, while financial entities should consider each of those criteria, the circumstances described in the criteria should not need to occur simultaneously and the importance of the affected ICT services should be appropriately considered to trigger ICT-related incident detection and response processes.
-
-(22)
-	
-
-When developing an ICT business continuity policy, financial entities referred to in Title II of this Regulation should take into account the essential components of ICT risk management, including ICT-related incident management and communication strategies, the ICT change management process, and risks associated with ICT third-party service providers.
-
-(23)
-	
-
-It is necessary to set out the set of scenarios that financial entities referred to in Title II of this Regulation should take into account both for the implementation of ICT response and recovery plans and for the testing of ICT business continuity plans. Those scenarios should serve as a starting point for financial entities to analyse both the relevance and plausibility of each scenario and the need to develop alternative scenarios. Financial entities should focus on those scenarios in which investment in resilience measures could be more efficient and effective. By testing switchovers between the primary ICT infrastructure and any redundant capacity, backups and redundant facilities, financial institutions should assess whether that capacity, backup, and those facilities operate effectively for a sufficient period of time and ensure that the normal functioning of the primary ICT infrastructure is restored in accordance with the recovery objectives.
-
-(24)
-	
-
-It is necessary to lay down requirements for operational risk, and more particularly requirements for ICT project and change management and ICT business continuity management building on those that apply already to central counterparties, central securities depositories and trading venues under, respectively, Regulations (EU) No 648/2012 (3), (EU) No 600/2014 (4) and (EU) No 909/2014 (5) of the European Parliament and of the Council.
-
-(25)
-	
-
-Article 6(5) of Regulation (EU) 2022/2554 requires financial entities to review their ICT risk management framework and to provide their competent authority with a report on that review. To enable competent authorities to easily process the information in those reports, and to guarantee an adequate transmission of that information, financial entities should submit those reports in a searchable electronic format.
-
-(26)
-	
-
-The requirements for financial entities that are subject to the simplified ICT risk management framework referred to in Article 16 of Regulation (EU) 2022/2554 should be focused on those essential areas and elements that, in light of the scale, risk, size, and complexity of those financial entities, are as a minimum necessary to ensure the confidentiality, integrity, availability, and authenticity of the data and services of those financial entities. In that context, those financial entities should have in place an internal governance and control framework with clear responsibilities to enable an effective and sound risk management framework. Furthermore, to reduce the administrative and operational burden, those financial entities should develop and document only one policy, that is an information security policy, that specifies the high-level principles and rules necessary to protect the confidentiality, integrity, availability, and authenticity of data and of the services of those financial entities.
-
-(27)
-	
-
-The provisions of this Regulation relate to the area of the ICT risk management framework, by detailing specific elements applicable to the financial entities in accordance with Article 15 of Regulation (EU) 2022/2554 and by designing the simplified ICT risk management framework for the financial entities set out in Article 16(1) of that Regulation. To ensure coherence between the ordinary and the simplified ICT risk management framework, and considering that those provisions should become applicable at the same time, it is appropriate to include those provisions in a single legislative act.
-
-(28)
-	
-
-This Regulation is based on the draft regulatory technical standards submitted to the Commission by the European Banking Authority, the European Insurance and Occupational Pensions Authority and the European Securities and Markets Authority (European Supervisory Authorities), in consultation with the European Union Agency for Cybersecurity (ENISA).
-
-(29)
-	
-
-The Joint Committee of the European Supervisory Authorities referred to in Article 54 of Regulation (EU) No 1093/2010 of the European Parliament and of the Council (6), in Article 54 of Regulation (EU) No 1094/2010 of the European Parliament and of the Council (7) and in Article 54 of Regulation (EU) No 1095/2010 of the European Parliament and of the Council (8) has conducted open public consultations on the draft regulatory technical standards on which this Regulation is based, analysed the potential costs and benefits of the proposed standards and requested advice of the Banking Stakeholder Group established in accordance with Article 37 of Regulation (EU) No 1093/2010, the Insurance and Reinsurance Stakeholder Group and the Occupational Pensions Stakeholder Group established in accordance with Article 37 of Regulation (EU) No 1094/2010, and the Securities and Markets Stakeholder Group established in accordance with Article 37 of Regulation (EU) No 1095/2010.
-
-(30)
-	
-
-To the extent to which processing of personal data is required to comply with the obligations set out in this Act, Regulations (EU) 2016/679 (9) and (EU) 2018/1725 (10) of the European Parliament and of the Council should fully apply. For instance, the data minimisation principle should be complied with where personal data are collected to ensure an appropriate incident detection. The European Data Protection Supervisor has also been consulted on the draft text of this Act,
-
-HAS ADOPTED THIS REGULATION:
-
-TITLE I
-
-GENERAL PRINCIPLE
-
-Article 1
-
-Overall risk profile and complexity
-
-When developing and implementing the ICT security policies, procedures, protocols and tools referred to in Title II and the simplified ICT risk management framework referred to in Title III, the size and the overall risk profile of the financial entity, and the nature, scale and elements of increased or reduced complexity of its services, activities and operations shall be taken into account, including elements relating to:
-
-(a)
-	
-
-encryption and cryptography;
-
-(b)
-	
-
-ICT operations security;
-
-(c)
-	
-
-network security;
-
-(d)
-	
-
-ICT project and change management;
-
-(e)
-	
-
-the potential impact of the ICT risk on confidentiality, integrity and availability of data, and of the disruptions on the continuity and availability of the financial entity’s activities.
-
-TITLE II
-
-FURTHER HARMONISATION OF ICT RISK MANAGEMENT TOOLS, METHODS, PROCESSES, AND POLICIES IN ACCORDANCE WITH ARTICLE 15 OF REGULATION (EU) 2022/2554
-
-CHAPTER I
-
-ICT Security policies, procedures, protocols, and tools
-
-Section 1
-
-Article 2
-
-General elements of ICT security policies, procedures, protocols, and tools
+<Article number="2" />
+#### General elements of ICT security policies, procedures, protocols, and tools
 
 1.   Financial entities shall ensure that their ICT security policies, information security, and related procedures, protocols, and tools as referred to in Article 9(2) of Regulation (EU) 2022/2554 are embedded in their ICT risk management framework. Financial entities shall establish the ICT security policies, procedures, protocols, and tools laid down in this Chapter that:
 
-(a)
-	
+(a) ensure the security of networks;
 
-ensure the security of networks;
+(b) contain safeguards against intrusions and data misuse;
 
-(b)
-	
+(c) preserve the availability, authenticity, integrity, and confidentiality of data, including via the use of cryptographic techniques;
 
-contain safeguards against intrusions and data misuse;
-
-(c)
-	
-
-preserve the availability, authenticity, integrity, and confidentiality of data, including via the use of cryptographic techniques;
-
-(d)
-	
-
-guarantee an accurate and prompt data transmission without major disruptions and undue delays.
+(d) guarantee an accurate and prompt data transmission without major disruptions and undue delays.
 
 2.   Financial entities shall ensure that the ICT security policies referred to in paragraph 1:
 
-(a)
-	
+(a) are aligned to the financial entity’s information security objectives included in the digital operational resilience strategy referred to in Article 6(8) of Regulation (EU) 2022/2554;
 
-are aligned to the financial entity’s information security objectives included in the digital operational resilience strategy referred to in Article 6(8) of Regulation (EU) 2022/2554;
+(b) indicate the date of the formal approval of the ICT security policies by the management body;
 
-(b)
-	
+(c) contain indicators and measures to:
 
-indicate the date of the formal approval of the ICT security policies by the management body;
+(i) monitor the implementation of the ICT security policies, procedures, protocols, and tools;
 
-(c)
-	
+(ii) record exceptions from that implementation;
 
-contain indicators and measures to:
+(iii) ensure that the digital operational resilience of the financial entity is ensured in case of exceptions as referred to in point (ii);
 
-(i)
-	
+(d) specify the responsibilities of staff at all levels to ensure the financial entity’s ICT security;
 
-monitor the implementation of the ICT security policies, procedures, protocols, and tools;
+(e) specify the consequences of non-compliance by staff of the financial entity with the ICT security policies, where provisions to that effect are not laid down in other policies of the financial entity;
 
-(ii)
-	
+(f) list the documentation to be maintained;
 
-record exceptions from that implementation;
+(g) specify the segregation of duties arrangements in the context of the three lines of defence model or other internal risk management and control model, as applicable, to avoid conflicts of interest;
 
-(iii)
-	
+(h) consider leading practices and, where applicable, standards as defined in Article 2, point (1), of Regulation (EU) No 1025/2012;
 
-ensure that the digital operational resilience of the financial entity is ensured in case of exceptions as referred to in point (ii);
+(i) identify the roles and responsibilities for the development, implementation and maintenance of ICT security policies, procedures, protocols, and tools;
 
-(d)
-	
+(j) are reviewed in accordance with Article 6(5) of Regulation (EU) 2022/2554;
 
-specify the responsibilities of staff at all levels to ensure the financial entity’s ICT security;
+(k) take into account material changes concerning the financial entity, including material changes to the activities or processes of the financial entity, to the cyber threat landscape, or to applicable legal obligations.
 
-(e)
-	
 
-specify the consequences of non-compliance by staff of the financial entity with the ICT security policies, where provisions to that effect are not laid down in other policies of the financial entity;
+<Section number="2" />
+###
 
-(f)
-	
-
-list the documentation to be maintained;
-
-(g)
-	
-
-specify the segregation of duties arrangements in the context of the three lines of defence model or other internal risk management and control model, as applicable, to avoid conflicts of interest;
-
-(h)
-	
-
-consider leading practices and, where applicable, standards as defined in Article 2, point (1), of Regulation (EU) No 1025/2012;
-
-(i)
-	
-
-identify the roles and responsibilities for the development, implementation and maintenance of ICT security policies, procedures, protocols, and tools;
-
-(j)
-	
-
-are reviewed in accordance with Article 6(5) of Regulation (EU) 2022/2554;
-
-(k)
-	
-
-take into account material changes concerning the financial entity, including material changes to the activities or processes of the financial entity, to the cyber threat landscape, or to applicable legal obligations.
-
-Section 2
-
-Article 3
-
-ICT risk management
+<Article number="3" />
+#### ICT risk management
 
 Financial entities shall develop, document, and implement ICT risk management policies and procedures that shall contain all of the following:
 
@@ -444,13 +190,11 @@ the assessment of whether the established risk tolerance levels of the financial
 
 the assessment of whether the financial entity has taken actions to correct or improve those measures where necessary.
 
-Section 3
+<Section number="3" />
+### ICT asset management
 
-ICT asset management
-
-Article 4
-
-ICT asset management policy
+<Article number="4" />
+#### ICT asset management policy
 
 1.   As part of the ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement a policy on management of ICT assets.
 
@@ -516,9 +260,8 @@ where applicable, for all ICT assets, the end dates of the ICT third-party servi
 
 for financial entities other than microenterprises, prescribe that those financial entities keep records of the information necessary to perform a specific ICT risk assessment on all legacy ICT systems referred to in Article 8(7) of Regulation (EU) 2022/2554.
 
-Article 5
-
-ICT asset management procedure
+<Article number="5" />
+#### ICT asset management procedure
 
 1.   Financial entities shall develop, document, and implement a procedure for the management of ICT assets.
 
@@ -534,13 +277,11 @@ the ICT risk related to those business functions and their dependencies on the i
 
 how the loss of confidentiality, integrity, and availability of such information assets and ICT assets would impact the business processes and activities of the financial entities.
 
-Section 4
+<Section number="4" />
+### Encryption and cryptography
 
-Encryption and cryptography
-
-Article 6
-
-Encryption and cryptographic controls
+<Article number="6" />
+#### Encryption and cryptographic controls
 
 1.   As part of their ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement a policy on encryption and cryptographic controls.
 
@@ -574,9 +315,8 @@ For the purposes of point (b), where encryption of data in use is not possible, 
 
 5.   Financial entities shall include in the policy on encryption and cryptographic controls referred to in paragraph 1 a requirement to record the adoption of mitigation and monitoring measures adopted in accordance with paragraphs 3 and 4 and to provide a reasoned explanation for doing so.
 
-Article 7
-
-Cryptographic key management
+<Article number="7" />
+#### Cryptographic key management
 
 1.   Financial entities shall include in the cryptographic key management policy referred to in Article 6(2), point (d), requirements for managing cryptographic keys through their whole lifecycle, including generating, renewing, storing, backing up, archiving, retrieving, transmitting, retiring, revoking, and destroying those cryptographic keys.
 
@@ -588,13 +328,11 @@ Cryptographic key management
 
 5.   Financial entities shall ensure the prompt renewal of certificates in advance of their expiration.
 
-Section 5
+<Section number="5" />
+### ICT operations security
 
-ICT operations security
-
-Article 8
-
-Policies and procedures for ICT operations
+<Article number="8" />
+#### Policies and procedures for ICT operations
 
 1.   As part of the ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement policies and procedures to manage the ICT operations. Those policies and procedures shall specify how financial entities operate, monitor, control, and restore their ICT assets, including the documentation of ICT operations.
 
@@ -684,9 +422,9 @@ For the purposes of point (b)(v), the separation shall consider all of the compo
 
 For the purposes of point (b)(vii), the policies and procedures referred to in paragraph 1 shall provide that the instances in which testing is performed in a production environment are clearly identified, reasoned, are for limited periods of time, and are approved by the relevant function in accordance with Article 16(6). Financial entities shall ensure the availability, confidentiality, integrity, and authenticity of ICT systems and production data during development and test activities in the production environment.
 
-Article 9
+<Article number="9" />
 
-Capacity and performance management
+#### Capacity and performance management
 
 1.   As part of the ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement capacity and performance management procedures for the following:
 
@@ -722,9 +460,9 @@ the prevention of ICT capacity shortages.
 
 2.   The capacity and performance management procedures referred to in paragraph 1 shall ensure that financial entities take measures that are appropriate to cater for the specificities of ICT systems with long or complex procurement or approval processes or ICT systems that are resource-intensive.
 
-Article 10
+<Article number="10" />
 
-Vulnerability and patch management
+#### Vulnerability and patch management
 
 1.   As part of the ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement vulnerability management procedures.
 
@@ -822,9 +560,9 @@ test and deploy the software and hardware patches and the updates referred to in
 
 set deadlines for the installation of software and hardware patches and updates and escalation procedures in case those deadlines cannot be met.
 
-Article 11
+<Article number="11" />
 
-Data and system security
+#### Data and system security
 
 1.   As part of the ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement a data and system security procedure.
 
@@ -924,9 +662,9 @@ the need to ensure and maintain adequate competences within the financial entity
 
 technical and organisational measures to minimise the risks related to the infrastructure used by the ICT third-party service provider for its ICT services, considering leading practices, and standards as defined in Article 2, point (1), of Regulation (EU) No 1025/2012.
 
-Article 12
+<Article number="12" />
 
-Logging
+#### Logging
 
 1.   Financial entities shall, as part of the safeguards against intrusions and data misuse, develop, document, and implement logging procedures, protocols and tools.
 
@@ -989,13 +727,11 @@ without prejudice to any applicable regulatory requirements under Union or natio
 
 For the purposes of point (a), financial entities shall establish the retention period, taking into account the business and information security objectives, the reason for recording the event in the logs, and the results of the ICT risk assessment.
 
-Section 6
+<Section number="6" />
+### Network security
 
-Network security
-
-Article 13
-
-Network security management
+<Article number="13" />
+#### Network security management
 
 Financial entities shall, as part of the safeguards ensuring the security of networks against intrusions and data misuse, develop, document, and implement policies, procedures, protocols, and tools on network security management, including all of the following:
 
@@ -1091,9 +827,9 @@ whether those services are provided by an ICT intra-group service provider or by
 
 For the purposes of point (h), financial entities shall perform the review of firewall rules and connections filters on a regular basis in accordance with the classification established in accordance with Article 8(1) of Regulation (EU) 2022/2554 and the overall risk profile of ICT systems involved. For ICT systems that support critical or important functions, financial entities shall verify the adequacy of the existing firewall rules and connection filters at least every 6 months.
 
-Article 14
+<Article number="14" />
 
-Securing information in transit
+#### Securing information in transit
 
 1.   As part of the safeguards to preserve the availability, authenticity, integrity and confidentiality of data, financial entities shall develop, document, and implement the policies, procedures, protocols, and tools to protect information in transit. Financial entities shall in particular ensure all of the following:
 
@@ -1114,13 +850,11 @@ that requirements on confidentiality or non-disclosure arrangements reflecting t
 
 2.   Financial entities shall design the policies, procedures, protocols, and tools to protect the information in transit referred to in paragraph 1 on the basis of the results of the approved data classification and of the ICT risk assessment.
 
-Section 7
+<Section number="7" />
+### ICT project and change management
 
-ICT project and change management
-
-Article 15
-
-ICT project management
+<Article number="15" />
+#### ICT project management
 
 1.   As part of the safeguards to preserve the availability, authenticity, integrity, and confidentiality of data, financial entities shall develop, document, and implement an ICT project management policy.
 
@@ -1177,9 +911,9 @@ individually or in aggregation, depending on the importance and size of the ICT 
 
 periodically and, where necessary, on an event-driven basis.
 
-Article 16
+<Article number="16" />
 
-ICT systems acquisition, development, and maintenance
+#### ICT systems acquisition, development, and maintenance
 
 1.   As part of the safeguards to preserve the availability, authenticity, integrity, and confidentiality of data, financial entities shall develop, document and implement a policy governing the acquisition, development, and maintenance of ICT systems. That policy shall:
 
@@ -1293,9 +1027,9 @@ financial entities are to protect the integrity and confidentiality of data in n
 
 9.   Paragraph 1 to 8 of this Article shall also apply to ICT systems developed or managed by users outside the ICT function, using a risk-based approach.
 
-Article 17
+<Article number="17" />
 
-ICT change management
+#### ICT change management
 
 1.   As part of the safeguards to preserve the availability, authenticity, integrity, and confidentiality of data, financial entities shall include in the ICT change management procedures referred to in Article 9(4), point (e), of Regulation (EU) 2022/2554, in respect of all changes to software, hardware, firmware components, systems, or security parameters, all of the following elements:
 
@@ -1420,11 +1154,11 @@ other market infrastructures;
 
 any other institutions with which central securities depositories have identified interdependencies in their ICT business continuity policy.
 
-Section 8
+<Section number="8" />
+###
 
-Article 18
-
-Physical and environmental security
+<Article number="18" />
+#### Physical and environmental security
 
 1.   As part of the safeguards to preserve the availability, authenticity, integrity, and confidentiality of data, financial entities shall specify, document, and implement a physical and environmental security policy. Financial entities shall design that policy i light of the cyber threat landscape, in accordance with the classification established in accordance with Article 8(1) of Regulation (EU) 2022/2554, and in light of the overall risk profile of ICT assets and accessible information assets.
 
@@ -1469,13 +1203,11 @@ For the purposes of point (b), the measures to protect from environmental threat
 
 For the purposes of point (c), the physical and environmental security policy referred to in paragraph 1 shall contain measures to provide appropriate protection to unattended ICT assets.
 
-CHAPTER II
+<Chapter number="2" />
+## Human resources policy and access control
 
-Human resources policy and access control
-
-Article 19
-
-Human resources policy
+<Article number="19" />
+#### Human resources policy
 
 Financial entities shall include in their human resource policy or other relevant policies all of the following ICT security related elements:
 
@@ -1504,9 +1236,9 @@ be aware of the reporting channels put in place by the financial entity for the 
 
 for the staff, to return to the financial entity, upon termination of employment, all ICT assets and tangible information assets in their possession that belong to the financial entity.
 
-Article 20
+<Article number="20" />
 
-Identity management
+#### Identity management
 
 1.   As part of their control of access management rights, financial entities shall develop, document, and implement identity management policies and procedures that ensure the unique identification and authentication of natural persons and systems accessing the financial entities’ information to enable assignment of user access rights in accordance with Article 21.
 
@@ -1526,9 +1258,9 @@ For the purposes of point (a), financial entities shall maintain records of all 
 
 For the purposes of point (b), financial entities shall, where feasible and appropriate, deploy automated solutions for the lifecycle identity management process.
 
-Article 21
+<Article number="21" />
 
-Access control
+#### Access control
 
 As part of their control of access management rights, financial entities shall develop, document, and implement a policy that contains all of the following:
 
@@ -1625,13 +1357,12 @@ For the purposes of point (g)(i), the identification and logging shall be commen
 
 For the purposes of point (g)(iii), the monitoring shall be commensurate to the classification established in accordance with Article 8(1) of Regulation (EU) 2022/2554 and the criticality of the area accessed.
 
-CHAPTER III
+<Chapter number="3" />
+## ICT-related incident detection and response
 
-ICT-related incident detection and response
+<Article number="22" />
 
-Article 22
-
-ICT-related incident management policy
+#### ICT-related incident management policy
 
 As part of the mechanisms to detect anomalous activities, including ICT network performance issues and ICT-related incidents, financial entities shall develop, document, and implement an ICT-related incident policy through which they shall:
 
@@ -1677,9 +1408,9 @@ establish and implement mechanisms to analyse significant or recurring ICT-relat
 
 For the purposes of point (d), financial entities shall retain the evidence referred to in that point in a secure manner.
 
-Article 23
+<Article number="23" />
 
-Anomalous activities detection and criteria for ICT-related incidents detection and response
+#### Anomalous activities detection and criteria for ICT-related incidents detection and response
 
 1.   Financial entities shall set clear roles and responsibilities to effectively detect and respond to ICT-related incidents and anomalous activities.
 
@@ -1765,13 +1496,11 @@ ICT systems’ and network unavailability.
 
 6.   For the purposes of paragraph 5, financial entities shall also consider the criticality of the services affected.
 
-CHAPTER IV
+<Chapter number="4" />
+## ICT business continuity management
 
-ICT business continuity management
-
-Article 24
-
-Components of the ICT business continuity policy
+<Article number="24" />
+#### Components of the ICT business continuity policy
 
 1.   Financial entities shall include in their ICT business continuity policy referred to in Article 11(1) of Regulation (EU) 2022/2554 all of the following:
 
@@ -1922,9 +1651,9 @@ trading can be resumed within or close to 2 hours of a disruptive incident;
 
 the maximum amount of data that may be lost from any IT service of the trading venue after a disruptive incident is close to zero.
 
-Article 25
+<Article number="25" />
 
-Testing of the ICT business continuity plans
+#### Testing of the ICT business continuity plans
 
 1.   When testing the ICT business continuity plans in accordance with Article 11(6), of Regulation (EU) 2022/2554, financial entities shall take into account the financial entity’s business impact analysis (BIA) and the ICT risk assessment referred to in Article 3(1), point (b), of this Regulation.
 
@@ -2007,9 +1736,9 @@ any other institutions with which central securities depositories have identifie
 
 5.   Financial entities shall document the results of the testing referred to in paragraph 1. Any identified deficiencies resulting from that testing shall be analysed, addressed, and reported to the management body.
 
-Article 26
+<Article number="26" />
 
-ICT response and recovery plans
+#### ICT response and recovery plans
 
 1.   When developing the ICT response and recovery plans referred to in Article 11(3) of Regulation (EU) 2022/2554, financial entities shall take into account the results of the financial entity’s business impact analysis (BIA). Those ICT response and recovery plans shall:
 
@@ -2096,13 +1825,11 @@ widespread power outages.
 
 4.   As part of the ICT response and recovery plans referred to in paragraph 1, financial entities shall consider and implement continuity measures to mitigate failures of ICT third-party service providers of ICT services supporting critical or important functions of the financial entity.
 
-CHAPTER V
+<Chapter number="4" />
+## Report on the ICT risk management framework review
 
-Report on the ICT risk management framework review
-
-Article 27
-
-Format and content of the report on the review of the ICT risk management framework
+<Article number="27" />
+#### Format and content of the report on the review of the ICT risk management framework
 
 1.   Financial entities shall submit the report on the review of the ICT risk management framework referred to in Article 6(5) of Regulation (EU) 2022/2554 in a searchable electronic format.
 
@@ -2257,527 +1984,6 @@ For the purposes of point (c), where the review was initiated following supervis
 
 For the purposes of point (f), the description shall contain an analysis of the impact of the changes on the financial entity’s digital operational resilience strategy, on the financial entity’s ICT internal control framework, and on the financial entity’s ICT risk management governance.
 
-TITLE III
+[^11]  Directive (EU) 2019/1937 of the European Parliament and of the Council of 23 October 2019 on the protection of persons who report breaches of Union law (OJ L 305, 26.11.2019, p. 17, ELI: http://data.europa.eu/eli/dir/2019/1937/oj).
 
-SIMPLIFIED ICT RISK MANAGEMENT FRAMEWORK FOR FINANCIAL ENTITIES REFERRED TO IN ARTICLE 16(1) OF REGULATION (EU) 2022/2554
-
-CHAPTER I
-
-Simplified ICT risk management framework
-
-Article 28
-
-Governance and organisation
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall have in place an internal governance and control framework that ensures an effective and prudent management of ICT risk to achieve a high level of digital operational resilience.
-
-2.   The financial entities referred to in paragraph 1 shall, as part of their simplified ICT risk management framework, ensure that their management body:
-
-(a)
-	
-
-bears the overall responsibility for ensuring that the simplified ICT risk management framework allows for the achievement of the financial entity’s business strategy in accordance with the risk appetite of that financial entity, and ensures that ICT risk is considered in that context;
-
-(b)
-	
-
-sets clear roles and responsibilities for all ICT-related tasks;
-
-(c)
-	
-
-sets out information security objectives and ICT requirements;
-
-(d)
-	
-
-approves, oversees, and periodically reviews:
-
-(i)
-	
-
-the classification of information assets of the financial entity as referred to in Article 30(1) of this Regulation, the list of main risks identified, and the business impact analysis and related policies;
-
-(ii)
-	
-
-the business continuity plans of the financial entity, and the response and recovery measures referred to in Article 16(1), point (f), of Regulation (EU) 2022/2554;
-
-(e)
-	
-
-allocates and reviews at least once a year the budget necessary to fulfil the financial entity’s digital operational resilience needs in respect of all types of resources, including relevant ICT security awareness programmes and digital operational resilience training and ICT skills for all staff;
-
-(f)
-	
-
-specifies and implements the policies and measures included in Chapters I, II and III of this Title to identify, assess and manage the ICT risk the financial entity is exposed to;
-
-(g)
-	
-
-identifies and implements procedures, ICT protocols, and tools that are necessary to protect all information assets and ICT assets;
-
-(h)
-	
-
-ensures that the staff of the financial entity is kept up to date with sufficient knowledge and skills to understand and assess ICT risk and its impact on the operations of the financial entity, commensurate to the ICT risk being managed;
-
-(i)
-	
-
-establishes reporting arrangements, including the frequency, form, and content of reporting to the management body on the information security and digital operational resilience.
-
-3.   The financial entities referred to in paragraph 1 may, in accordance with Union and national sectoral law, outsource the tasks of verifying compliance with ICT risk management requirements to ICT intra-group or ICT third-party service providers. In case of such outsourcing, financial entities shall remain fully responsible for the verification of compliance with the ICT risk management requirements.
-
-4.   The financial entities referred to in paragraph 1 shall ensure an appropriate segregation and the independence of control functions and internal audit functions.
-
-5.   The financial entities referred to in paragraph 1 shall ensure that their simplified ICT risk management framework is subject to an internal audit by auditors, in line with the financial entities’ audit plan. The auditors shall have sufficient knowledge, skills, and expertise in ICT risk, and shall be independent. The frequency and focus of ICT audits shall be commensurate to the ICT risk of the financial entity.
-
-6.   Based on the outcome of the audit referred to in paragraph 5, the financial entities referred to in paragraph 1 shall ensure the timely verification and remediation of critical ICT audit findings.
-
-Article 29
-
-Information security policy and measures
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall develop, document, and implement an information security policy in the context of the simplified ICT risk management framework. That information security policy shall specify the high-level principles and rules to protect the confidentiality, integrity, availability, and authenticity of data and of the services those financial entities provide.
-
-2.   Based on their information security policy referred to in paragraph 1, the financial entities referred to in paragraph 1 shall establish and implement ICT security measures to mitigate their exposure to ICT risk, including mitigating measures implemented by ICT third-party service providers.
-
-The ICT security measures shall include all of the measures referred to in Articles 30 to 38.
-
-Article 30
-
-Classification of information assets and ICT assets
-
-1.   As part of the simplified ICT risk management framework referred to in Article 16(1), point (a), of Regulation (EU) 2022/2554, the financial entities referred to in paragraph 1 of that Article shall identify, classify, and document all critical or important functions, the information assets and ICT assets supporting them and their interdependencies. Financial entities shall review that identification and classification as needed.
-
-2.   The financial entities referred to in paragraph 1 shall identify all critical or important functions supported by ICT third-party service providers.
-
-Article 31
-
-ICT risk management
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall include in their simplified ICT risk management framework all of the following:
-
-(a)
-	
-
-a determination of the risk tolerance levels for ICT risk, in accordance with the risk appetite of the financial entity;
-
-(b)
-	
-
-the identification and assessment of the ICT risks to which the financial entity is exposed;
-
-(c)
-	
-
-the specification of mitigation strategies at least for the ICT risks that are not within the risk tolerance levels of the financial entity;
-
-(d)
-	
-
-the monitoring of the effectiveness of the mitigation strategies referred to in point (c);
-
-(e)
-	
-
-the identification and assessment of any ICT and information security risks resulting from any major change in ICT system or ICT services, processes, or procedures, and from ICT security testing results and after any major ICT-related incident.
-
-2.   The financial entities referred to in paragraph 1 shall carry out and document the ICT risk assessment periodically commensurate to the financial entities’ ICT risk profile.
-
-3.   The financial entities referred to in paragraph 1 shall continuously monitor threats and vulnerabilities that are relevant to their critical or important functions, and information assets and ICT assets, and shall regularly review the risk scenarios impacting those critical or important functions.
-
-4.   The financial entities referred to in paragraph 1 shall set out alert thresholds and criteria to trigger and initiate ICT-related incident response processes.
-
-Article 32
-
-Physical and environmental security
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall identify and implement physical security measures designed on the basis of the threat landscape and in accordance with the classification referred to in Article 30(1) of this Regulation, the overall risk profile of ICT assets, and accessible information assets.
-
-2.   The measures referred to in paragraph 1 shall protect the premises of financial entities and, where applicable, data centres of financial entities where ICT assets and information assets reside from unauthorised access, attacks, and accidents, and from environmental threats and hazards.
-
-3.   The protection from environmental threats and hazards shall be commensurate with the importance of the premises concerned and, where applicable, the data centres and the criticality of the operations or ICT systems located therein.
-
-CHAPTER II
-
-Further elements of systems, protocols, and tools to minimise the impact of ICT risk
-
-Article 33
-
-Access Control
-
-The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall develop, document, and implement procedures for the control of logical and physical access and shall enforce, monitor, and periodically review those procedures. Those procedures shall contain the following elements of control of logical and physical access:
-
-(a)
-	
-
-access rights to information assets, ICT assets, and their supported functions, and to critical locations of operation of the financial entity, are managed on a need-to-know, need-to-use and least privileges basis, including for remote and emergency access;
-
-(b)
-	
-
-user accountability, which ensures that users can be identified for the actions performed in the ICT systems;
-
-(c)
-	
-
-account management procedures to grant, change, or revoke access rights for user and generic accounts, including generic administrator accounts;
-
-(d)
-	
-
-authentication methods that are commensurate to the classification referred to in Article 30(1) and to the overall risk profile of ICT assets, and which are based on leading practices;
-
-(e)
-	
-
-access rights are periodically reviewed and are withdrawn when no longer required.
-
-For the purposes of point (c), the financial entity shall assign privileged, emergency, and administrator access on a need-to-use or an ad-hoc basis for all ICT systems, and shall be logged in accordance with Article 34, first paragraph, point (f).
-
-For the purposes of point (d), financial entities shall use strong authentication methods that are based on leading practices for remote access to the financial entities’ network, for privileged access, and for access to ICT assets supporting critical or important functions that are publicly available.
-
-Article 34
-
-ICT operations security
-
-The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall, as part of their systems, protocols, and tools, and for all ICT assets:
-
-(a)
-	
-
-monitor and manage the lifecycle of all ICT assets;
-
-(b)
-	
-
-monitor whether the ICT assets are supported by ICT third-party service providers of financial entities, where applicable;
-
-(c)
-	
-
-identify capacity requirements of their ICT assets and measures to maintain and improve the availability and efficiency of ICT systems and prevent ICT capacity shortages before they materialise;
-
-(d)
-	
-
-perform automated vulnerability scanning and assessments of ICT assets commensurate to their classification as referred to in Article 30(1) and to the overall risk profile of the ICT asset, and deploy patches to address identified vulnerabilities;
-
-(e)
-	
-
-manage the risks related to outdated, unsupported, or legacy ICT assets;
-
-(f)
-	
-
-log events related to logical and physical access control, ICT operations, including system and network traffic activities, and ICT change management;
-
-(g)
-	
-
-identify and implement measures to monitor and analyse information on anomalous activities and behaviour for critical or important ICT operations;
-
-(h)
-	
-
-implement measures to monitor relevant and up-to-date information about cyber threats;
-
-(i)
-	
-
-implement measures to identify possible information leakages, malicious code and other security threats, and publicly known vulnerabilities in software and hardware, and check for corresponding new security updates.
-
-For the purposes of point (f), financial entities shall align the level of detail of the logs with their purpose and usage of the ICT asset producing those logs.
-
-Article 35
-
-Data, system and network security
-
-The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall, as part of their systems, protocols, and tools, develop and implement safeguards that ensure the security of networks against intrusions and data misuse and that preserve the availability, authenticity, integrity, and confidentiality of data. In particular, financial entities shall, taking into account the classification referred to in Article 30(1) of this Regulation, establish all of the following:
-
-(a)
-	
-
-the identification and implementation of measures to protect data in use, in transit, and at rest;
-
-(b)
-	
-
-the identification and implementation of security measures regarding the use of software, data storage media, systems and endpoint devices that transfer and store data of the financial entity;
-
-(c)
-	
-
-the identification and implementation of measures to prevent and detect unauthorised connections to the financial entity’s network, and to secure the network traffic between the financial entity’s internal networks and the internet and other external connections;
-
-(d)
-	
-
-the identification and implementation of measures that ensure the availability, authenticity, integrity, and confidentiality of data during network transmissions;
-
-(e)
-	
-
-a process to securely delete data on premises, or that are stored externally, that the financial entity no longer needs to collect or store;
-
-(f)
-	
-
-a process to securely dispose of, or decommission, data storage devices on premises, or data storage devices that are stored externally, that contain confidential information;
-
-(g)
-	
-
-the identification and implementation of measures to ensure that teleworking and the use of private endpoint devices does not adversely impact the financial entity’s ability to carry out its critical activities in an adequate, timely, and secure manner.
-
-Article 36
-
-ICT security testing
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall establish and implement an ICT security testing plan to validate the effectiveness of their ICT security measures developed in accordance with Articles 33, 34 and 35 and Articles 37 and 38 of this Regulation. Financial entities shall ensure that that plan considers threats and vulnerabilities identified as part of the simplified ICT risk management framework referred to in Article 31 of this Regulation.
-
-2.   The financial entities referred to in paragraph 1 shall review, asses and test ICT security measures, taking into consideration the overall risk profile of the ICT assets of the financial entity.
-
-3.   The financial entities referred to in paragraph 1 shall monitor and evaluate the results of the security tests and update their security measures accordingly without undue delay in the case of ICT systems supporting critical or important functions.
-
-Article 37
-
-ICT systems acquisition, development, and maintenance
-
-The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall design and implement, where appropriate, a procedure governing the acquisition, development, and maintenance of ICT systems following a risk-based approach. That procedure shall:
-
-(a)
-	
-
-ensure that, before any acquisition or development of ICT systems takes place, the functional and non-functional requirements, including information security requirements, are clearly specified and approved by the business function concerned;
-
-(b)
-	
-
-ensure the testing and approval of ICT systems prior to their first use and before introducing changes to the production environment;
-
-(c)
-	
-
-identify measures to mitigate the risk of unintentional alteration or intentional manipulation of the ICT systems during development and implementation in the production environment.
-
-Article 38
-
-ICT project and change management
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall develop, document, and implement an ICT project management procedure and shall specify the roles and responsibilities for its implementation. That procedure shall cover all stages of the ICT projects from their initiation to their closure.
-
-2.   The financial entities referred to in paragraph 1 shall develop, document, and implement an ICT change management procedure to ensure that all changes to ICT systems are recorded, tested, assessed, approved, implemented, and verified in a controlled manner and with the adequate safeguards to preserve the financial entity’s digital operational resilience.
-
-CHAPTER III
-
-ICT business continuity management
-
-Article 39
-
-Components of the ICT business continuity plan
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall develop their ICT business continuity plans considering the results of the analysis of their exposures to and potential impact of severe business disruptions and scenarios to which their ICT assets supporting critical or important functions might be exposed, including a cyber-attack scenario.
-
-2.   The ICT business continuity plans referred to in paragraph 1 shall:
-
-(a)
-	
-
-be approved by the management body of the financial entity;
-
-(b)
-	
-
-be documented and readily accessible in the event of an emergency or crisis;
-
-(c)
-	
-
-allocate sufficient resources for their execution;
-
-(d)
-	
-
-establish planned recovery levels and timeframes for the recovery and resumption of functions and key internal and external dependencies, including ICT third-party service providers;
-
-(e)
-	
-
-identify the conditions that may prompt the activation of the ICT business continuity plans and what actions are to be taken to ensure the availability, continuity, and recovery of the financial entities’ ICT assets supporting critical or important functions;
-
-(f)
-	
-
-identify the restoration and recovery measures for critical or important business functions, supporting processes, information assets, and their interdependencies to avoid adverse effects on the functioning of the financial entities;
-
-(g)
-	
-
-identify backup procedures and measures that specify the scope of the data that are subject to the backup, and the minimum frequency of the backup, based on the criticality of the function using those data;
-
-(h)
-	
-
-consider alternative options where recovery may not be feasible in the short term because of costs, risks, logistics, or unforeseen circumstances;
-
-(i)
-	
-
-specify the internal and external communication arrangements, including escalation plans;
-
-(j)
-	
-
-be updated in line with lessons learned from incidents, tests, new risks, and threats identified, changed recovery objectives, major changes to the financial entity’s organisation, and to the ICT assets supporting critical or business functions.
-
-For the purposes of point (f), the measures referred to in that point shall provide for the mitigation of failures of critical third-party providers.
-
-Article 40
-
-Testing of business continuity plans
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall test their business continuity plans referred to in Article 39 of this Regulation, including the scenarios referred to in that Article, at least once every year for the back-up and restore procedures, or upon every major change of the business continuity plan.
-
-2.   The testing of business continuity plans referred to in paragraph 1 shall demonstrate that the financial entities referred to in that paragraph are able to sustain the viability of their businesses until critical operations are re-established and identify any deficiencies in those plans.
-
-3.   The financial entities referred to in paragraph 1 shall document the results of the testing of business continuity plans and any identified deficiencies resulting from that testing shall be analysed, addressed, and reported to the management body.
-
-CHAPTER IV
-
-Report on the review of the simplified ICT risk management framework
-
-Article 41
-
-Format and content of the report on the review of the simplified ICT risk management framework
-
-1.   The financial entities referred to in Article 16(1) of Regulation (EU) 2022/2554 shall submit the report on the review of the ICT risk management framework referred to in paragraph 2 of that Article in a searchable electronic format.
-
-2.   The report referred to in paragraph 1 shall contain all of the following information:
-
-(a)
-	
-
-an introductory section providing:
-
-(i)
-	
-
-a description of the context of the report in terms of the nature, scale, and complexity of the financial entity’s services, activities, and operations, the financial entity’s organisation, identified critical functions, strategy, major ongoing projects or activities, and relationships, and the financial entity’s dependence on in-house and outsourced ICT services and systems, or the implications that a total loss or severe degradation of such systems would have on critical or important functions and market efficiency;
-
-(ii)
-	
-
-an executive level summary of the current and near-term ICT risk identified, threat landscape, the assessed effectiveness of its controls, and the security posture of the financial entity;
-
-(iii)
-	
-
-information about the reported area;
-
-(iv)
-	
-
-a summary of the major changes in the ICT risk management framework since the previous report;
-
-(v)
-	
-
-a summary and a description of the impact of major changes to the simplified ICT risk management framework since the previous report;
-
-(b)
-	
-
-where applicable, the date of the approval of the report by the management body of the financial entity;
-
-(c)
-	
-
-a description of the reasons for the review, including:
-
-(i)
-	
-
-where the review has been initiated following supervisory instructions, evidence of such instructions;
-
-(ii)
-	
-
-where the review has been initiated following the occurrence of ICT-related incidents, the list of all those ICT-related incidents with related incident root-cause analysis;
-
-(d)
-	
-
-the start and end date of the review period;
-
-(e)
-	
-
-the person responsible for the review;
-
-(f)
-	
-
-a summary of findings, and a self-assessment of the severity of the weaknesses, deficiencies, and gaps identified in ICT risk management framework for the review period, including a detailed analysis thereof;
-
-(g)
-	
-
-remedying measures identified to address weaknesses, deficiencies, and gaps in the simplified ICT risk management framework, and the expected date for implementing those measures, including the follow-up on weaknesses, deficiencies, and gaps identified in previous reports, where those weaknesses, deficiencies, and gaps have not yet been remedied;
-
-(h)
-	
-
-overall conclusions on the review of the simplified ICT risk management framework, including any further planned developments.
-
-TITLE IV
-
-FINAL PROVISIONS
-
-Article 42
-
-Entry into force
-
-This Regulation shall enter into force on the twentieth day following that of its publication in the Official Journal of the European Union.
-
-This Regulation shall be binding in its entirety and directly applicable in all Member States.
-
-Done at Brussels, 13 March 2024.
-
-For the Commission
-
-The President
-
-Ursula VON DER LEYEN
-
-(1)   OJ L 333, 27.12.2022, p. 1, ELI: http://data.europa.eu/eli/reg/2022/2554/oj.
-
-(2)  Regulation (EU) No 1025/2012 of the European Parliament and of the Council of 25 October 2012 on European standardisation, amending Council Directives 89/686/EEC and 93/15/EEC and Directives 94/9/EC, 94/25/EC, 95/16/EC, 97/23/EC, 98/34/EC, 2004/22/EC, 2007/23/EC, 2009/23/EC and 2009/105/EC of the European Parliament and of the Council and repealing Council Decision 87/95/EEC and Decision No 1673/2006/EC of the European Parliament and of the Council (OJ L 316, 14.11.2012, p. 12, ELI: http://data.europa.eu/eli/reg/2012/1025/oj).
-
-(3)  Regulation (EU) No 648/2012 of the European Parliament and of the Council of 4 July 2012 on OTC derivatives, central counterparties and trade repositories (OJ L 201, 27.7.2012, p. 1, ELI: http://data.europa.eu/eli/reg/2012/648/oj).
-
-(4)  Regulation (EU) No 600/2014 of the European Parliament and of the Council of 15 May 2014 on markets in financial instruments and amending Regulation (EU) No 648/2012 (OJ L 173, 12.6.2014, p. 84, ELI: http://data.europa.eu/eli/reg/2014/600/oj).
-
-(5)  Regulation (EU) No 909/2014 of the European Parliament and of the Council of 23 July 2014 on improving securities settlement in the European Union and on central securities depositories and amending Directives 98/26/EC and 2014/65/EU and Regulation (EU) No 236/2012 (OJ L 257, 28.8.2014, p. 1, ELI: http://data.europa.eu/eli/reg/2014/909/oj).
-
-(6)  Regulation (EU) No 1093/2010 of the European Parliament and of the Council of 24 November 2010 establishing a European Supervisory Authority (European Banking Authority), amending Decision No 716/2009/EC and repealing Commission Decision 2009/78/EC (OJ L 331, 15.12.2010, p. 12, ELI: http://data.europa.eu/eli/reg/2010/1093/oj).
-
-(7)  Regulation (EU) No 1094/2010 of the European Parliament and of the Council of 24 November 2010 establishing a European Supervisory Authority (European Insurance and Occupational Pensions Authority), amending Decision No 716/2009/EC and repealing Commission Decision 2009/79/EC (OJ L 331, 15.12.2010, p. 48, ELI: http://data.europa.eu/eli/reg/2010/1094/oj).
-
-(8)  Regulation (EU) No 1095/2010 of the European Parliament and of the Council of 24 November 2010 establishing a European Supervisory Authority (European Securities and Markets Authority), amending Decision No 716/2009/EC and repealing Commission Decision 2009/77/EC (OJ L 331, 15.12.2010, p. 84, ELI: http://data.europa.eu/eli/reg/2010/1095/oj).
-
-(9)  Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation) (OJ L 119, 4.5.2016, p. 1, ELI: http://data.europa.eu/eli/reg/2016/679/oj).
-
-(10)  Regulation (EU) 2018/1725 of the European Parliament and of the Council of 23 October 2018 on the protection of natural persons with regard to the processing of personal data by the Union institutions, bodies, offices and agencies and on the free movement of such data, and repealing Regulation (EC) No 45/2001 and Decision No 1247/2002/EC (OJ L 295, 21.11.2018, p. 39, ELI: http://data.europa.eu/eli/reg/2018/1725/oj).
-
-(11)  Directive (EU) 2019/1937 of the European Parliament and of the Council of 23 October 2019 on the protection of persons who report breaches of Union law (OJ L 305, 26.11.2019, p. 17, ELI: http://data.europa.eu/eli/dir/2019/1937/oj).
-
-(12)  Commission Delegated Regulation (EU) 2024/1772 of 13 March 2024 supplementing Regulation (EU) 2022/2554 of the European Parliament and of the Council with regard to regulatory technical standards specifying the criteria for the classification of ICT-related incidents and cyber threats, setting out materiality thresholds and specifying the details of reports of major incidents (OJ L, 2024/1772, 25.6.2024, ELI: http://data.europa.eu/eli/reg_del/2024/1772/oj).
-
-ELI: http://data.europa.eu/eli/reg_del/2024/1774/oj
-
-ISSN 1977-0677 (electronic edition)
+[^12]  Commission Delegated Regulation (EU) 2024/1772 of 13 March 2024 supplementing Regulation (EU) 2022/2554 of the European Parliament and of the Council with regard to regulatory technical standards specifying the criteria for the classification of ICT-related incidents and cyber threats, setting out materiality thresholds and specifying the details of reports of major incidents (OJ L, 2024/1772, 25.6.2024, ELI: http://data.europa.eu/eli/reg_del/2024/1772/oj).

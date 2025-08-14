@@ -1,0 +1,27 @@
+---
+import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
+
+interface Props {
+  number: number;
+}
+
+const { number } = Astro.props;
+---
+
+<h2 class="chapter-number">Chapter {number}</h2>
+
+<style is:global>
+  @layer base, starlight, theme, components, utilities;
+
+  @import "@astrojs/starlight-tailwind";
+  @import "tailwindcss/theme.css" layer(theme);
+  @import "tailwindcss/utilities.css" layer(utilities);
+
+  .chapter-number {
+    @apply text-accent-700 text-xl md:text-3xl w-max border-b-4 border-b-gray-500;
+  }
+
+  .chapter-number + div.level-h3 {
+    @apply inline-block;
+  }
+</style>
