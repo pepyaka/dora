@@ -1,0 +1,19 @@
+---
+
+---
+
+<section class="overview-title">
+  <slot />
+</section>
+
+<style>
+  @layer base, starlight, theme, components, utilities;
+
+  @import "@astrojs/starlight-tailwind";
+  @import "tailwindcss/theme.css" layer(theme);
+  @import "tailwindcss/utilities.css" layer(utilities);
+
+  .overview-title {
+    @apply text-center font-bold;
+  }
+</style>

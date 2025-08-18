@@ -1,0 +1,34 @@
+---
+interface Props {
+  isDirectlyApplicable: boolean;
+}
+
+const { isDirectlyApplicable = true } = Astro.props;
+---
+
+<section class="concluding-formulas">
+  <slot />
+  <hr />
+</section>
+
+<style is:global>
+  @layer base, starlight, theme, components, utilities;
+
+  @import "@astrojs/starlight-tailwind";
+  @import "tailwindcss/theme.css" layer(theme);
+  @import "tailwindcss/utilities.css" layer(utilities);
+
+  .concluding-formulas {
+    @apply pt-10 mx-auto;
+  }
+  .concluding-formulas > ul {
+    @apply list-none pl-0 flex justify-around;
+
+    & > li {
+      @apply basis-full text-center;
+    }
+    & > li > p:nth-of-type(-n + 2) {
+      @apply italic;
+    }
+  }
+</style>

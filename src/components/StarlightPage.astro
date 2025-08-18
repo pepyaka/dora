@@ -1,0 +1,10 @@
+---
+import OriginalStarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import type { MarkdownHeading } from "astro";
+
+const headings: MarkdownHeading[] = [{ depth: 3, slug: "slug", text: "TEXT" }];
+---
+
+<OriginalStarlightPage frontmatter={Astro.props.frontmatter} headings={headings}
+  ><slot />
+</OriginalStarlightPage>

@@ -1,12 +1,12 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
 import tailwindcss from "@tailwindcss/vite";
 import {
   defListHastHandlers,
   remarkDefinitionList,
 } from "remark-definition-list";
+import starlightScrollToTop from "starlight-scroll-to-top";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +22,9 @@ export default defineConfig({
         label: "GitHub",
         href: "https://github.com/pepyaka/dora",
       }],
+      tableOfContents: {
+        maxHeadingLevel: 4,
+      },
       sidebar: [
         {
           label: "Lifecycle",
@@ -38,8 +41,11 @@ export default defineConfig({
       ],
       pagination: false,
       components: {
-        MarkdownContent: "./src/components/regulations/MarkdownContent.astro",
+        Sidebar: "./src/components/Sidebar.astro",
+        TableOfContents: "./src/components/conditional/TableOfContents.astro",
+        MarkdownContent: "./src/components/conditional/MarkdownContent.astro",
       },
+      plugins: [starlightScrollToTop()],
     }),
   ],
   vite: {
@@ -47,6 +53,9 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkDefinitionList],
-    remarkRehype: { handlers: defListHastHandlers },
+    remarkRehype: {
+      handlers: defListHastHandlers,
+      footnoteLabelTagName: "div", // TODO: Replace tag with height
+    },
   },
 });

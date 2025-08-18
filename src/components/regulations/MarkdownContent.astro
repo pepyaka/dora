@@ -1,17 +1,55 @@
 ---
 import OriginMarkdownContent from "@astrojs/starlight/components/MarkdownContent.astro";
-
-const isRegulations = Astro.locals.starlightRoute.id.startsWith("regulations/");
 ---
-
-{
-  isRegulations ? (
-    <style>@import "/src/styles/regulations.css"</style>
-  ) : (
-    <style />
-  )
-}
 
 <OriginMarkdownContent>
   <slot />
 </OriginMarkdownContent>
+
+<style is:global>
+  @layer base, starlight, theme, components, utilities;
+
+  @import "@astrojs/starlight-tailwind";
+  @import "tailwindcss/theme.css" layer(theme);
+  @import "tailwindcss/utilities.css" layer(utilities);
+
+  .section-number {
+    @apply text-accent-500 text-lg md:text-2xl block;
+  }
+
+  .section-name {
+    @apply inline-block border-b-2 border-b-accent-500;
+  }
+
+  .article-number {
+    @apply text-accent-700 text-base md:text-xl block;
+  }
+
+  .article-name {
+    @apply inline-block border-b-2 border-b-accent-700;
+  }
+
+  .sl-markdown-content > ol {
+    @apply list-inside p-0;
+
+    & > li > p {
+      @apply inline;
+    }
+
+    & > li > ol {
+      @apply list-[lower-latin] list-outside mt-0.25;
+
+      & > li > p {
+        @apply inline;
+      }
+
+      & > li > ol {
+        @apply list-[lower-roman] list-outside;
+
+        & > li > p {
+          @apply inline;
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,208 @@
+---
+import { match, Pattern } from "ts-pattern";
+import romans from "romans";
+
+import { getCollection, render } from "astro:content";
+import { HeadingLevel } from "./TableOfContents.astro";
+
+type OverviewTocEntry = {
+  level: HeadingLevel;
+  number: number;
+  text: string;
+  slug: string;
+};
+
+const { slug } = Astro.params;
+
+if (!slug?.endsWith("/overview")) {
+  throw Error(
+    "This pages only valid for 'regulation/*/overview' pages, but we got" +
+      slug,
+  );
+}
+
+const regPathPrefix = slug
+  ?.replace("regulations/", "")
+  .replace("/overview", "");
+
+const collectionEntries = await getCollection("regulations", (data) => {
+  return (
+    data.id.startsWith(regPathPrefix) &&
+    !data.id.endsWith("/overview") &&
+    !data.id.endsWith("/recitals")
+  );
+});
+
+const regEntries = await Promise.all(
+  collectionEntries.map(async (entry) => {
+    const { id, data } = entry;
+    const { headings } = await render(entry);
+    return {
+      id,
+      data,
+      headings,
+    };
+  }),
+);
+
+let titleNumber = 0;
+let chapterNumber = 0;
+let sectionNumber = 0;
+let articleNumber = 0;
+
+function incrementLevelNumber(level: HeadingLevel): number {
+  switch (level) {
+    case HeadingLevel.TITLE:
+      titleNumber += 1;
+      return titleNumber;
+    case HeadingLevel.Chapter:
+      chapterNumber += 1;
+      return chapterNumber;
+    case HeadingLevel.Section:
+      sectionNumber += 1;
+      return sectionNumber;
+    case HeadingLevel.Article:
+      articleNumber += 1;
+      return articleNumber;
+    default:
+      return 0;
+  }
+}
+
+const entries: OverviewTocEntry[] = [];
+
+regEntries.forEach(({ id, data: { title, tableOfContents }, headings }) => {
+  // Page heading level is always one level higher than highest on the page
+  const pageHeadingLevel = match(tableOfContents)
+    .with(
+      { minHeadingLevel: Pattern.number },
+      ({ minHeadingLevel }) => minHeadingLevel - 1,
+    )
+    .otherwise(() => HeadingLevel.TITLE);
+  const pageSlug = "/regulations/" + id;
+  entries.push({
+    level: pageHeadingLevel,
+    number: incrementLevelNumber(pageHeadingLevel),
+    text: title,
+    slug: pageSlug,
+  });
+
+  // reset parts numbering on the page
+  if (pageHeadingLevel < HeadingLevel.Chapter) {
+    chapterNumber = 0;
+  }
+  if (pageHeadingLevel < HeadingLevel.Section) {
+    sectionNumber = 0;
+  }
+
+  // push page's data
+  headings.forEach(({ depth: level, text, slug }) => {
+    if (level > 4) {
+      throw Error(
+        `Heading tags should be in range h4..h2 (including markdown). Found h${level} (#${slug}) at ${id}`,
+      );
+    }
+    entries.push({
+      level,
+      number: incrementLevelNumber(level),
+      text,
+      slug: pageSlug + "#" + slug,
+    });
+  });
+});
+---
+
+<div class="overview-toc-content">
+  {
+    entries.map(({ level, number, text, slug }) => (
+      <div class="overview-toc-item">
+        <a
+          class={HeadingLevel[level].toLocaleLowerCase() + "-number"}
+          href={slug}
+        >
+          {HeadingLevel[level]}
+          {level !== HeadingLevel.Article ? romans.romanize(number) : number}
+        </a>
+        <span class={HeadingLevel[level].toLocaleLowerCase() + "-text"}>
+          {text}
+        </span>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  @layer base, starlight, theme, components, utilities;
+
+  @import "@astrojs/starlight-tailwind";
+  @import "tailwindcss/theme.css" layer(theme);
+  @import "tailwindcss/utilities.css" layer(utilities);
+
+  .overview-toc-content {
+    @apply py-10;
+  }
+
+  .overview-toc-item {
+    @apply mt-1 flex flex-nowrap gap-8;
+  }
+
+  .overview-toc-item > *:first-child() {
+    @apply w-36 shrink-0 text-accent-500 text-right border-gray-500;
+  }
+
+  .overview-toc-item > *:nth-child(2) {
+    @apply mt-0;
+  }
+
+  .overview-toc-item > a {
+    @apply inline-block no-underline hover:text-gray-500;
+  }
+
+  /* Title */
+  .overview-toc-item:has(.title-number):not(:first-of-type) {
+    @apply mt-8 pt-8 border-t-1 border-gray-300;
+  }
+
+  .title-number {
+    @apply text-xl md:text-2xl font-bold border-b-4;
+  }
+
+  .title-text {
+    @apply text-xl;
+  }
+
+  /* Chapter */
+  .overview-toc-item:has(.chapter-number) {
+    @apply mt-4;
+  }
+
+  .chapter-number {
+    @apply text-xl md:text-2xl border-b-3;
+  }
+
+  .chapter-text {
+    @apply text-xl;
+  }
+
+  /* Section */
+  .overview-toc-item:has(.section-number) {
+    @apply mt-4;
+  }
+
+  .section-number {
+    @apply text-lg md:text-xl border-b-2;
+  }
+
+  .section-text {
+    @apply text-lg;
+  }
+
+  /* Article */
+  .article-number {
+    @apply text-base md:text-lg border-b-1;
+  }
+
+  .article-text {
+    @apply text-base;
+  }
+</style>

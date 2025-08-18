@@ -1,0 +1,73 @@
+---
+import TableOfContentsList from "./TableOfContents/TableOfContentsList.astro";
+import type { TocItem } from "@starlight/utils/generateToC";
+
+export enum HeadingLevel {
+	TITLE = 1,
+	Chapter = 2,
+	Section = 3,
+	Article = 4,
+}
+
+export type ExtTocItem = {
+	headingLevel: HeadingLevel;
+	offset: number;
+	slug: string;
+	text: string;
+	children: ExtTocItem[];
+};
+
+const { toc } = Astro.locals.starlightRoute;
+
+let articleNumber: number =
+	Astro.locals.starlightRoute.entry.data.regulation?.pageArticleStart || 0;
+
+function enumerateRegParts(tocItems: TocItem[]): ExtTocItem[] {
+	return tocItems.map(({ depth, children, slug, text }, n) => {
+		let offset;
+		// depth == 4 is Article depth
+		if (depth === 4) {
+			offset = articleNumber;
+			articleNumber += 1;
+		} else {
+			offset = n + 1;
+		}
+		return {
+			headingLevel: depth,
+			offset,
+			slug,
+			text,
+			children: enumerateRegParts(children),
+		};
+	});
+}
+
+let children: ExtTocItem[] = [];
+if (toc) {
+	if (toc.items.length > 1) {
+		children = enumerateRegParts(toc.items.slice(1));
+	} else {
+		children = enumerateRegParts(toc.items[0].children);
+	}
+}
+---
+
+{
+	toc && (
+		<starlight-toc
+			data-min-h={toc.minHeadingLevel}
+			data-max-h={toc.maxHeadingLevel}
+		>
+			<nav aria-labelledby="starlight__on-this-page">
+				<h2 id="starlight__on-this-page">
+					{Astro.locals.t("tableOfContents.onThisPage")}
+				</h2>
+				<TableOfContentsList {children} />
+			</nav>
+		</starlight-toc>
+	)
+}
+
+<script
+	src="../../../node_modules/@astrojs/starlight/components/TableOfContents/starlight-toc"
+></script>

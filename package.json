@@ -16,8 +16,11 @@
     "astro": "^5.12.8",
     "cheerio": "^1.1.2",
     "remark-definition-list": "^2.0.0",
+    "romans": "^3.1.0",
     "sharp": "^0.34.2",
-    "tailwindcss": "^4.1.11"
+    "starlight-scroll-to-top": "^0.3.1",
+    "tailwindcss": "^4.1.11",
+    "ts-pattern": "^5.8.0"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
