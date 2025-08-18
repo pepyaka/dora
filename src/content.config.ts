@@ -21,10 +21,13 @@ const regulations = defineCollection({
   }),
   schema: docsSchema({
     extend: z.object({
-      regulation: z.optional(z.object({
-        pageHeadingLevel: z.enum([ 'TITLE', 'Chapter', 'Section', 'Article' ]),
-        pageArticleStart: z.number().default(0),
-      })),
+      tableOfContents: z
+        .union([
+          z.object({
+            minHeadingLevel: z.number().int().min(2).max(4),
+          }),
+          z.boolean().transform(Boolean),
+        ]),
     }),
   }),
 });

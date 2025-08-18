@@ -53,6 +53,9 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkDefinitionList],
-    remarkRehype: { handlers: defListHastHandlers },
+    remarkRehype: {
+      handlers: defListHastHandlers,
+      footnoteLabelTagName: "div", // TODO: Replace tag with height
+    },
   },
 });
