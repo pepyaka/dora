@@ -29,6 +29,18 @@ const articleCounter = articleCounterInitialValue - 1;
   @import "tailwindcss/theme.css" layer(theme);
   @import "tailwindcss/utilities.css" layer(utilities);
 
+  @counter-style reg-lower-roman {
+    system: extends lower-roman;
+    prefix: "(";
+    suffix: ") ";
+  }
+
+  @counter-style reg-lower-latin {
+    system: extends lower-latin;
+    prefix: "(";
+    suffix: ") ";
+  }
+
   .regulation-markdown-content {
     & .sl-markdown-content {
       counter-reset: chapter-counter 0 section-counter 0 article-counter
@@ -65,14 +77,22 @@ const articleCounter = articleCounterInitialValue - 1;
       }
 
       & > li > ol {
-        @apply list-[lower-latin] list-outside mt-0.25;
+        @apply list-[reg-lower-latin] list-outside mt-0.25 pl-5;
+
+        & > li {
+          @apply pl-2;
+        }
 
         & > li > p {
           @apply inline;
         }
 
         & > li > ol {
-          @apply list-[lower-roman] list-outside;
+          @apply list-[reg-lower-roman] list-outside pl-5;
+
+          & > li {
+            @apply pl-2;
+          }
 
           & > li > p {
             @apply inline;
