@@ -29,58 +29,80 @@ const articleCounter = articleCounterInitialValue - 1;
   @import "tailwindcss/theme.css" layer(theme);
   @import "tailwindcss/utilities.css" layer(utilities);
 
-  .sl-markdown-content {
-    counter-reset: chapter-counter 0 section-counter 0 article-counter
-      var(--articleCounter);
+  @counter-style reg-lower-roman {
+    system: extends lower-roman;
+    prefix: "(";
+    suffix: ") ";
   }
 
-  .sl-heading-wrapper > h2 {
-    counter-reset: section-counter 0;
+  @counter-style reg-lower-latin {
+    system: extends lower-latin;
+    prefix: "(";
+    suffix: ") ";
   }
 
-  .sl-heading-wrapper > h2:before {
-    content: "Chapter " counter(chapter-counter, upper-roman);
-    counter-increment: chapter-counter;
-    @apply block text-accent-700 text-xl md:text-3xl w-max border-b-4 border-b-gray-500 mb-2;
-  }
-
-  .sl-heading-wrapper > h3:before {
-    content: "Section " counter(section-counter, upper-roman);
-    counter-increment: section-counter;
-    @apply block text-accent-700 text-lg md:text-2xl w-max border-b-2 border-b-gray-500 mb-2;
-  }
-
-  .sl-heading-wrapper > h4:before {
-    content: "Article " counter(article-counter);
-    counter-increment: article-counter;
-    @apply block text-accent-700 text-base md:text-xl w-max border-b-1 border-b-gray-500 mb-2;
-  }
-
-  .sl-markdown-content > ol {
-    @apply list-inside p-0;
-
-    & > li > p {
-      @apply inline;
+  .regulation-markdown-content {
+    & .sl-markdown-content {
+      counter-reset: chapter-counter 0 section-counter 0 article-counter
+        var(--articleCounter);
     }
 
-    & > li > ol {
-      @apply list-[lower-latin] list-outside mt-0.25;
+    & .sl-heading-wrapper > h2 {
+      counter-reset: section-counter 0;
+    }
+
+    & .sl-heading-wrapper > h2:before {
+      content: "Chapter " counter(chapter-counter, upper-roman);
+      counter-increment: chapter-counter;
+      @apply block text-accent-700 text-xl md:text-3xl w-max border-b-4 border-b-gray-500 mb-2;
+    }
+
+    & .sl-heading-wrapper > h3:before {
+      content: "Section " counter(section-counter, upper-roman);
+      counter-increment: section-counter;
+      @apply block text-accent-700 text-lg md:text-2xl w-max border-b-2 border-b-gray-500 mb-2;
+    }
+
+    & .sl-heading-wrapper > h4:before {
+      content: "Article " counter(article-counter);
+      counter-increment: article-counter;
+      @apply block text-accent-700 text-base md:text-xl w-max border-b-1 border-b-gray-500 mb-2;
+    }
+
+    & .sl-markdown-content > ol {
+      @apply list-inside p-0;
 
       & > li > p {
         @apply inline;
       }
 
       & > li > ol {
-        @apply list-[lower-roman] list-outside;
+        @apply list-[reg-lower-latin] list-outside mt-0.25 pl-5;
+
+        & > li {
+          @apply pl-2;
+        }
 
         & > li > p {
           @apply inline;
         }
+
+        & > li > ol {
+          @apply list-[reg-lower-roman] list-outside pl-5;
+
+          & > li {
+            @apply pl-2;
+          }
+
+          & > li > p {
+            @apply inline;
+          }
+        }
       }
     }
-  }
 
-  .regulation-markdown-content > aside {
-    @apply mt-12;
+    & > aside {
+      @apply mt-12;
+    }
   }
 </style>
