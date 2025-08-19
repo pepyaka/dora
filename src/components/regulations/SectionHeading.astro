@@ -1,5 +1,5 @@
 ---
-import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
+import { romanize } from "romans";
 
 interface Props {
   number: number;
@@ -8,7 +8,7 @@ interface Props {
 const { number } = Astro.props;
 ---
 
-<h3 class="section-number">Section {number}</h3>
+<h3 class="section-number">Section {romanize(Number(number))}</h3>
 
 <style is:global>
   @layer base, starlight, theme, components, utilities;

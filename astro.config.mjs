@@ -7,6 +7,7 @@ import {
   remarkDefinitionList,
 } from "remark-definition-list";
 import starlightScrollToTop from "starlight-scroll-to-top";
+import { remarkHeadingId } from "remark-custom-heading-id";
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,6 +41,10 @@ export default defineConfig({
         },
       ],
       pagination: false,
+      editLink: {
+        baseUrl: "https://github.com/pepyaka/dora/edit/main/",
+      },
+      lastUpdated: true,
       components: {
         Sidebar: "./src/components/Sidebar.astro",
         TableOfContents: "./src/components/conditional/TableOfContents.astro",
@@ -52,7 +57,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   markdown: {
-    remarkPlugins: [remarkDefinitionList],
+    remarkPlugins: [remarkDefinitionList, remarkHeadingId],
     remarkRehype: {
       handlers: defListHastHandlers,
       footnoteLabelTagName: "div", // TODO: Replace tag with height

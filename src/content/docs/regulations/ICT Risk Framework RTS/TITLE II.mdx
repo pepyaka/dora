@@ -3,25 +3,21 @@ title: Further harmonisation of ICT risk management tools, methods, processes, a
 banner:
   content: TITLE II
 sidebar:
-  order: 202
+  order: 203
   badge: TITLE II
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 4
+regulation:
+  pageArticleStart: 2
 prev: TITLE I
 next: TITLE III
 ---
-import Chapter from "/src/components/regulations/ChapterHeading.astro";
-import Section from "/src/components/regulations/SectionHeading.astro";
-import Article from "/src/components/regulations/ArticleHeading.astro";
 
-<Chapter number="1" />
 ## ICT Security policies, procedures, protocols, and tools
 
-<Section number="1" />
-###
+### {#section-i}
 
-<Article number="2" />
 #### General elements of ICT security policies, procedures, protocols, and tools
 
 1.   Financial entities shall ensure that their ICT security policies, information security, and related procedures, protocols, and tools as referred to in Article 9(2) of Regulation (EU) 2022/2554 are embedded in their ICT risk management framework. Financial entities shall establish the ICT security policies, procedures, protocols, and tools laid down in this Chapter that:
@@ -65,10 +61,8 @@ import Article from "/src/components/regulations/ArticleHeading.astro";
 (k) take into account material changes concerning the financial entity, including material changes to the activities or processes of the financial entity, to the cyber threat landscape, or to applicable legal obligations.
 
 
-<Section number="2" />
-###
+### {#section-ii}
 
-<Article number="3" />
 #### ICT risk management
 
 Financial entities shall develop, document, and implement ICT risk management policies and procedures that shall contain all of the following:
@@ -190,10 +184,8 @@ the assessment of whether the established risk tolerance levels of the financial
 
 the assessment of whether the financial entity has taken actions to correct or improve those measures where necessary.
 
-<Section number="3" />
 ### ICT asset management
 
-<Article number="4" />
 #### ICT asset management policy
 
 1.   As part of the ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement a policy on management of ICT assets.
@@ -260,7 +252,6 @@ where applicable, for all ICT assets, the end dates of the ICT third-party servi
 
 for financial entities other than microenterprises, prescribe that those financial entities keep records of the information necessary to perform a specific ICT risk assessment on all legacy ICT systems referred to in Article 8(7) of Regulation (EU) 2022/2554.
 
-<Article number="5" />
 #### ICT asset management procedure
 
 1.   Financial entities shall develop, document, and implement a procedure for the management of ICT assets.
@@ -277,10 +268,8 @@ the ICT risk related to those business functions and their dependencies on the i
 
 how the loss of confidentiality, integrity, and availability of such information assets and ICT assets would impact the business processes and activities of the financial entities.
 
-<Section number="4" />
 ### Encryption and cryptography
 
-<Article number="6" />
 #### Encryption and cryptographic controls
 
 1.   As part of their ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement a policy on encryption and cryptographic controls.
@@ -315,7 +304,6 @@ For the purposes of point (b), where encryption of data in use is not possible, 
 
 5.   Financial entities shall include in the policy on encryption and cryptographic controls referred to in paragraph 1 a requirement to record the adoption of mitigation and monitoring measures adopted in accordance with paragraphs 3 and 4 and to provide a reasoned explanation for doing so.
 
-<Article number="7" />
 #### Cryptographic key management
 
 1.   Financial entities shall include in the cryptographic key management policy referred to in Article 6(2), point (d), requirements for managing cryptographic keys through their whole lifecycle, including generating, renewing, storing, backing up, archiving, retrieving, transmitting, retiring, revoking, and destroying those cryptographic keys.
@@ -328,10 +316,8 @@ For the purposes of point (b), where encryption of data in use is not possible, 
 
 5.   Financial entities shall ensure the prompt renewal of certificates in advance of their expiration.
 
-<Section number="5" />
 ### ICT operations security
 
-<Article number="8" />
 #### Policies and procedures for ICT operations
 
 1.   As part of the ICT security policies, procedures, protocols, and tools referred to in Article 9(2) of Regulation (EU) 2022/2554, financial entities shall develop, document, and implement policies and procedures to manage the ICT operations. Those policies and procedures shall specify how financial entities operate, monitor, control, and restore their ICT assets, including the documentation of ICT operations.
@@ -422,7 +408,6 @@ For the purposes of point (b)(v), the separation shall consider all of the compo
 
 For the purposes of point (b)(vii), the policies and procedures referred to in paragraph 1 shall provide that the instances in which testing is performed in a production environment are clearly identified, reasoned, are for limited periods of time, and are approved by the relevant function in accordance with Article 16(6). Financial entities shall ensure the availability, confidentiality, integrity, and authenticity of ICT systems and production data during development and test activities in the production environment.
 
-<Article number="9" />
 
 #### Capacity and performance management
 
@@ -460,7 +445,6 @@ the prevention of ICT capacity shortages.
 
 2.   The capacity and performance management procedures referred to in paragraph 1 shall ensure that financial entities take measures that are appropriate to cater for the specificities of ICT systems with long or complex procurement or approval processes or ICT systems that are resource-intensive.
 
-<Article number="10" />
 
 #### Vulnerability and patch management
 
@@ -560,7 +544,6 @@ test and deploy the software and hardware patches and the updates referred to in
 
 set deadlines for the installation of software and hardware patches and updates and escalation procedures in case those deadlines cannot be met.
 
-<Article number="11" />
 
 #### Data and system security
 
@@ -662,7 +645,6 @@ the need to ensure and maintain adequate competences within the financial entity
 
 technical and organisational measures to minimise the risks related to the infrastructure used by the ICT third-party service provider for its ICT services, considering leading practices, and standards as defined in Article 2, point (1), of Regulation (EU) No 1025/2012.
 
-<Article number="12" />
 
 #### Logging
 
@@ -727,10 +709,8 @@ without prejudice to any applicable regulatory requirements under Union or natio
 
 For the purposes of point (a), financial entities shall establish the retention period, taking into account the business and information security objectives, the reason for recording the event in the logs, and the results of the ICT risk assessment.
 
-<Section number="6" />
 ### Network security
 
-<Article number="13" />
 #### Network security management
 
 Financial entities shall, as part of the safeguards ensuring the security of networks against intrusions and data misuse, develop, document, and implement policies, procedures, protocols, and tools on network security management, including all of the following:
@@ -827,7 +807,6 @@ whether those services are provided by an ICT intra-group service provider or by
 
 For the purposes of point (h), financial entities shall perform the review of firewall rules and connections filters on a regular basis in accordance with the classification established in accordance with Article 8(1) of Regulation (EU) 2022/2554 and the overall risk profile of ICT systems involved. For ICT systems that support critical or important functions, financial entities shall verify the adequacy of the existing firewall rules and connection filters at least every 6 months.
 
-<Article number="14" />
 
 #### Securing information in transit
 
@@ -850,10 +829,8 @@ that requirements on confidentiality or non-disclosure arrangements reflecting t
 
 2.   Financial entities shall design the policies, procedures, protocols, and tools to protect the information in transit referred to in paragraph 1 on the basis of the results of the approved data classification and of the ICT risk assessment.
 
-<Section number="7" />
 ### ICT project and change management
 
-<Article number="15" />
 #### ICT project management
 
 1.   As part of the safeguards to preserve the availability, authenticity, integrity, and confidentiality of data, financial entities shall develop, document, and implement an ICT project management policy.
@@ -862,56 +839,27 @@ that requirements on confidentiality or non-disclosure arrangements reflecting t
 
 3.   The ICT project management policy referred to in paragraph 1 shall contain all of the following:
 
-(a)
-	
+  (a) ICT project objectives;
 
-ICT project objectives;
+  (b) ICT project governance, including roles and responsibilities;
 
-(b)
-	
+  (c) ICT project planning, timeframe, and steps;
 
-ICT project governance, including roles and responsibilities;
+  (d) ICT project risk assessment;
 
-(c)
-	
+  (e) relevant milestones;
 
-ICT project planning, timeframe, and steps;
+  (f) change management requirements;
 
-(d)
-	
-
-ICT project risk assessment;
-
-(e)
-	
-
-relevant milestones;
-
-(f)
-	
-
-change management requirements;
-
-(g)
-	
-
-the testing of all requirements, including security requirements, and the respective approval process when deploying an ICT system in the production environment.
+  (g) the testing of all requirements, including security requirements, and the respective approval process when deploying an ICT system in the production environment.
 
 4.   The ICT project management policy referred to in paragraph 1 shall ensure the secure ICT project implementation through the provision of the necessary information and expertise from the business area or functions impacted by the ICT project.
 
 5.   In accordance with the ICT project risk assessment referred to in paragraph 3, point (d), the ICT project management policy referred to in paragraph 1 shall provide that the establishment and progress of ICT projects impacting critical or important functions of the financial entity and their associated risks are reported to the management body as follows:
 
-(a)
-	
+  (a) individually or in aggregation, depending on the importance and size of the ICT projects;
 
-individually or in aggregation, depending on the importance and size of the ICT projects;
-
-(b)
-	
-
-periodically and, where necessary, on an event-driven basis.
-
-<Article number="16" />
+  (b) periodically and, where necessary, on an event-driven basis.
 
 #### ICT systems acquisition, development, and maintenance
 
@@ -1027,7 +975,6 @@ financial entities are to protect the integrity and confidentiality of data in n
 
 9.   Paragraph 1 to 8 of this Article shall also apply to ICT systems developed or managed by users outside the ICT function, using a risk-based approach.
 
-<Article number="17" />
 
 #### ICT change management
 
@@ -1154,59 +1101,34 @@ other market infrastructures;
 
 any other institutions with which central securities depositories have identified interdependencies in their ICT business continuity policy.
 
-<Section number="8" />
-###
+### {#section-viii}
 
-<Article number="18" />
 #### Physical and environmental security
 
 1.   As part of the safeguards to preserve the availability, authenticity, integrity, and confidentiality of data, financial entities shall specify, document, and implement a physical and environmental security policy. Financial entities shall design that policy i light of the cyber threat landscape, in accordance with the classification established in accordance with Article 8(1) of Regulation (EU) 2022/2554, and in light of the overall risk profile of ICT assets and accessible information assets.
 
 2.   The physical and environmental security policy referred to in paragraph 1 shall contain all of the following:
 
-(a)
-	
+  (a) a reference to the section of the policy on control of access management rights referred to in Article 21, first paragraph, point (g);
 
-a reference to the section of the policy on control of access management rights referred to in Article 21, first paragraph, point (g);
+  (b) measures to protect from attacks, accidents, and environmental threats and hazards, the premises, data centres of the financial entity, and sensitive designated areas identified by the financial entity, where ICT assets and information assets reside;
 
-(b)
-	
+  (c) measures to secure ICT assets, both within and outside the premises of the financial entity, taking into account the results of the ICT risk assessment related to the relevant ICT assets;
 
-measures to protect from attacks, accidents, and environmental threats and hazards, the premises, data centres of the financial entity, and sensitive designated areas identified by the financial entity, where ICT assets and information assets reside;
+  (d) measures to ensure the availability, authenticity, integrity, and confidentiality of ICT assets, information assets, and physical access control devices of the financial entity through the appropriate maintenance;
 
-(c)
-	
+  (e) measures to preserve the availability, authenticity, integrity, and confidentiality of the data, including:
 
-measures to secure ICT assets, both within and outside the premises of the financial entity, taking into account the results of the ICT risk assessment related to the relevant ICT assets;
+    (i) a clear desk policy for papers;
 
-(d)
-	
-
-measures to ensure the availability, authenticity, integrity, and confidentiality of ICT assets, information assets, and physical access control devices of the financial entity through the appropriate maintenance;
-
-(e)
-	
-
-measures to preserve the availability, authenticity, integrity, and confidentiality of the data, including:
-
-(i)
-	
-
-a clear desk policy for papers;
-
-(ii)
-	
-
-a clear screen policy for information processing facilities.
+    (ii) a clear screen policy for information processing facilities.
 
 For the purposes of point (b), the measures to protect from environmental threats and hazards shall be commensurate with the importance of the premises, data centres, sensitive designated areas, and the criticality of the operations or ICT systems located therein.
 
 For the purposes of point (c), the physical and environmental security policy referred to in paragraph 1 shall contain measures to provide appropriate protection to unattended ICT assets.
 
-<Chapter number="2" />
 ## Human resources policy and access control
 
-<Article number="19" />
 #### Human resources policy
 
 Financial entities shall include in their human resource policy or other relevant policies all of the following ICT security related elements:
@@ -1221,7 +1143,6 @@ Financial entities shall include in their human resource policy or other relevan
 
   (iii) for the staff, to return to the financial entity, upon termination of employment, all ICT assets and tangible information assets in their possession that belong to the financial entity.
 
-<Article number="20" />
 
 #### Identity management
 
@@ -1243,7 +1164,6 @@ For the purposes of point (a), financial entities shall maintain records of all 
 
 For the purposes of point (b), financial entities shall, where feasible and appropriate, deploy automated solutions for the lifecycle identity management process.
 
-<Article number="21" />
 
 #### Access control
 
@@ -1342,10 +1262,8 @@ For the purposes of point (g)(i), the identification and logging shall be commen
 
 For the purposes of point (g)(iii), the monitoring shall be commensurate to the classification established in accordance with Article 8(1) of Regulation (EU) 2022/2554 and the criticality of the area accessed.
 
-<Chapter number="3" />
 ## ICT-related incident detection and response
 
-<Article number="22" />
 
 #### ICT-related incident management policy
 
@@ -1369,7 +1287,6 @@ As part of the mechanisms to detect anomalous activities, including ICT network 
 
 For the purposes of point (d), financial entities shall retain the evidence referred to in that point in a secure manner.
 
-<Article number="23" />
 
 #### Anomalous activities detection and criteria for ICT-related incidents detection and response
 
@@ -1457,10 +1374,8 @@ ICT systems’ and network unavailability.
 
 6.   For the purposes of paragraph 5, financial entities shall also consider the criticality of the services affected.
 
-<Chapter number="4" />
 ## ICT business continuity management
 
-<Article number="24" />
 #### Components of the ICT business continuity policy
 
 1.   Financial entities shall include in their ICT business continuity policy referred to in Article 11(1) of Regulation (EU) 2022/2554 all of the following:
@@ -1612,7 +1527,6 @@ trading can be resumed within or close to 2 hours of a disruptive incident;
 
 the maximum amount of data that may be lost from any IT service of the trading venue after a disruptive incident is close to zero.
 
-<Article number="25" />
 
 #### Testing of the ICT business continuity plans
 
@@ -1697,7 +1611,6 @@ any other institutions with which central securities depositories have identifie
 
 5.   Financial entities shall document the results of the testing referred to in paragraph 1. Any identified deficiencies resulting from that testing shall be analysed, addressed, and reported to the management body.
 
-<Article number="26" />
 
 #### ICT response and recovery plans
 
@@ -1786,11 +1699,9 @@ widespread power outages.
 
 4.   As part of the ICT response and recovery plans referred to in paragraph 1, financial entities shall consider and implement continuity measures to mitigate failures of ICT third-party service providers of ICT services supporting critical or important functions of the financial entity.
 
-<Chapter number="5" />
 
 ## Report on the ICT risk management framework review
 
-<Article number="27" />
 
 #### Format and content of the report on the review of the ICT risk management framework
 
