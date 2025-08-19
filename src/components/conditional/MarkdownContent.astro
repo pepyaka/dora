@@ -1,15 +1,23 @@
 ---
 import OriginMarkdownContent from "@astrojs/starlight/components/MarkdownContent.astro";
-import RegulationMarkdownContent from "../regulations/MarkdownContent.astro";
+import RegulationsMarkdownContent from "../regulations/MarkdownContent.astro";
 
-const isRegulations = Astro.locals.starlightRoute.id.startsWith("regulations/");
+const {
+  id,
+  entry: { data },
+} = Astro.locals.starlightRoute;
+const isRegulations = id.startsWith("regulations/");
+const articleCounterInitialValue: number =
+  data.regulation?.pageArticleStart || 0;
 ---
 
 {
   isRegulations ? (
-    <RegulationMarkdownContent>
+    <RegulationsMarkdownContent
+      articleCounterInitialValue={articleCounterInitialValue}
+    >
       <slot />
-    </RegulationMarkdownContent>
+    </RegulationsMarkdownContent>
   ) : (
     <OriginMarkdownContent>
       <slot />

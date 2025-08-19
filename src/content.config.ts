@@ -21,6 +21,9 @@ const regulations = defineCollection({
   }),
   schema: docsSchema({
     extend: z.object({
+      sidebar: z.object({
+        order: z.number().int()
+      }),
       tableOfContents: z
         .union([
           z.object({

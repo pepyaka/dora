@@ -45,6 +45,9 @@ const regEntries = await Promise.all(
   }),
 );
 
+// sort file entries according sidebar
+regEntries.sort((a, b) => a.data.sidebar.order - b.data.sidebar.order);
+
 let titleNumber = 0;
 let chapterNumber = 0;
 let sectionNumber = 0;
