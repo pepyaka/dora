@@ -22,6 +22,10 @@ export default defineConfig({
         icon: "github",
         label: "GitHub",
         href: "https://github.com/pepyaka/dora",
+      }, {
+        icon: "email",
+        label: "E-Mail",
+        href: "mailto:info@digital-operational-resilience.org",
       }],
       tableOfContents: {
         maxHeadingLevel: 4,
@@ -48,6 +52,7 @@ export default defineConfig({
       components: {
         Sidebar: "./src/components/Sidebar.astro",
         TableOfContents: "./src/components/conditional/TableOfContents.astro",
+        MobileTableOfContents: "./src/components/conditional/MobileTableOfContents.astro",
         MarkdownContent: "./src/components/conditional/MarkdownContent.astro",
       },
       plugins: [starlightScrollToTop()],

@@ -2,22 +2,14 @@
 import OriginTableOfContents from "@astrojs/starlight/components/TableOfContents.astro";
 import RegulationsTableOfContents from "../regulations/TableOfContents.astro";
 
-const prefix = Astro.params.slug?.replace(/\/.+/, "");
+const pageArticleStart =
+  Astro.locals.starlightRoute.entry.data.regulation?.pageArticleStart;
 
 let ActiveTableOfContents;
-
-switch (prefix) {
-  case "regulations":
-    // Articles has continuous numbering, so we should have initial article number on each page
-    if (Astro.locals.starlightRoute.entry.data.regulation?.pageArticleStart) {
-      ActiveTableOfContents = RegulationsTableOfContents;
-    } else {
-      ActiveTableOfContents = OriginTableOfContents;
-    }
-    break;
-  default:
-    ActiveTableOfContents = OriginTableOfContents;
-    break;
+if (pageArticleStart) {
+  ActiveTableOfContents = RegulationsTableOfContents;
+} else {
+  ActiveTableOfContents = OriginTableOfContents;
 }
 ---
 
