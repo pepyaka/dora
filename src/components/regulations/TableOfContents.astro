@@ -17,39 +17,42 @@ export type ExtTocItem = {
 	children: ExtTocItem[];
 };
 
-const { toc } = Astro.locals.starlightRoute;
+const { toc, entry } = Astro.locals.starlightRoute;
 
-let articleNumber: number =
-	Astro.locals.starlightRoute.entry.data.regulation?.pageArticleStart || 0;
+const articleNumber = entry.data.regulation?.pageArticleStart || 0;
 
-function enumerateRegParts(tocItems: TocItem[]): ExtTocItem[] {
-	return tocItems.map(({ depth, children, slug, text }, n) => {
-		let offset;
-		// depth == 4 is Article depth
-		if (depth === 4) {
-			offset = articleNumber;
-			articleNumber += 1;
-		} else {
-			offset = n + 1;
-		}
-		return {
-			headingLevel: depth,
-			offset,
-			slug,
-			text,
-			children: enumerateRegParts(children),
-		};
-	});
-}
+export function genExtTocItems(
+	tocItems: TocItem[] = [],
+	articleNumber: number,
+): ExtTocItem[] {
+	function enumerateRegParts(tocItems: TocItem[]): ExtTocItem[] {
+		return tocItems.map(({ depth, children, slug, text }, n) => {
+			let offset;
+			// depth == 4 is Article depth
+			if (depth === 4) {
+				offset = articleNumber;
+				articleNumber += 1;
+			} else {
+				offset = n + 1;
+			}
+			return {
+				headingLevel: depth,
+				offset,
+				slug,
+				text,
+				children: enumerateRegParts(children),
+			};
+		});
+	}
 
-let children: ExtTocItem[] = [];
-if (toc) {
-	if (toc.items.length > 1) {
-		children = enumerateRegParts(toc.items.slice(1));
+	if (tocItems.length > 1) {
+		return enumerateRegParts(tocItems.slice(1));
 	} else {
-		children = enumerateRegParts(toc.items[0].children);
+		return enumerateRegParts(tocItems[0].children);
 	}
 }
+
+const extTocItems = genExtTocItems(toc?.items, articleNumber);
 ---
 
 {
@@ -62,12 +65,10 @@ if (toc) {
 				<h2 id="starlight__on-this-page">
 					{Astro.locals.t("tableOfContents.onThisPage")}
 				</h2>
-				<TableOfContentsList {children} />
+				<TableOfContentsList {extTocItems} />
 			</nav>
 		</starlight-toc>
 	)
 }
 
-<script
-	src="../../../node_modules/@astrojs/starlight/components/TableOfContents/starlight-toc"
-></script>
+<script src="@starlight/components/TableOfContents/starlight-toc"></script>

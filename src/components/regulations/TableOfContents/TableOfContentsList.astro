@@ -3,17 +3,17 @@ import romans from "romans";
 import { HeadingLevel, type ExtTocItem } from "../TableOfContents.astro";
 
 interface Props {
-	children: ExtTocItem[];
+	extTocItems: ExtTocItem[];
 	depth?: number;
 	isMobile?: boolean;
 }
 
-const { children, isMobile = false, depth = 0 } = Astro.props;
+const { extTocItems, isMobile = false, depth = 0 } = Astro.props;
 ---
 
 <ul class:list={{ isMobile }}>
 	{
-		children.map(({ headingLevel: level, slug, children, text, offset }) => (
+		extTocItems.map(({ headingLevel: level, slug, children, text, offset }) => (
 			<li>
 				<a href={"#" + slug}>
 					{slug !== "_top" && (
@@ -27,7 +27,7 @@ const { children, isMobile = false, depth = 0 } = Astro.props;
 					<span>{text}</span>
 				</a>
 				{children.length > 0 && (
-					<Astro.self {children} depth={depth + 1} {isMobile} />
+					<Astro.self extTocItems={children} depth={depth + 1} {isMobile} />
 				)}
 			</li>
 		))
@@ -59,7 +59,6 @@ const { children, isMobile = false, depth = 0 } = Astro.props;
 		.isMobile a {
 			--pad-inline: 1rem;
 			display: flex;
-			justify-content: space-between;
 			gap: var(--pad-inline);
 			border-top: 1px solid var(--sl-color-gray-6);
 			border-radius: 0;
@@ -88,6 +87,9 @@ const { children, isMobile = false, depth = 0 } = Astro.props;
 			-webkit-mask-repeat: no-repeat;
 			mask-repeat: no-repeat;
 			flex-shrink: 0;
+		}
+		.isMobile h4 {
+			@apply whitespace-nowrap;
 		}
 	}
 </style>

@@ -1,0 +1,18 @@
+---
+import OriginMobileTableOfContents from "@astrojs/starlight/components/MobileTableOfContents.astro";
+import RegulationsMobileTableOfContents from "../regulations/MobileTableOfContents.astro";
+
+const pageArticleStart =
+  Astro.locals.starlightRoute.entry.data.regulation?.pageArticleStart;
+
+let ActiveMobileTableOfContents;
+if (pageArticleStart) {
+  ActiveMobileTableOfContents = RegulationsMobileTableOfContents;
+} else {
+  ActiveMobileTableOfContents = OriginMobileTableOfContents;
+}
+---
+
+<ActiveMobileTableOfContents>
+  <slot />
+</ActiveMobileTableOfContents>
