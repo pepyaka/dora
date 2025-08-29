@@ -1,0 +1,172 @@
+---
+import { MarkerLevel, type NestedItem } from "./MarkdownNestedList.astro";
+
+interface Props {
+  sublist: NestedItem[];
+  markerLevel: MarkerLevel;
+}
+
+const { sublist, markerLevel } = Astro.props;
+
+const IdentClass: Record<MarkerLevel, string> = {
+  [MarkerLevel.Undefined]: "undefined",
+  [MarkerLevel.NumberDot]: "number-dot",
+  [MarkerLevel.LatinParen]: "latin-paren",
+  [MarkerLevel.RomanParen]: "roman-paren",
+  [MarkerLevel.NumberParen]: "number-paren",
+};
+---
+
+{
+  sublist.length > 0 && (
+    <ol
+      class:list={[
+        sublist.length > 98 ? "extended-marker-space" : "",
+        IdentClass[markerLevel],
+      ]}
+    >
+      {sublist.map(({ text, children, fragment }) => (
+        <li id={fragment}>
+          {text}
+          <Astro.self sublist={children} markerLevel={markerLevel + 1} />
+        </li>
+      ))}
+    </ol>
+  )
+}
+
+<style>
+  @layer base, starlight, theme, components, utilities;
+
+  @import "@astrojs/starlight-tailwind";
+  @import "tailwindcss/theme.css" layer(theme);
+  @import "tailwindcss/utilities.css" layer(utilities);
+
+  @counter-style lower-latin-paren {
+    system: extends lower-latin;
+    prefix: "(";
+    suffix: ") ";
+  }
+
+  @counter-style lower-roman-paren {
+    system: extends lower-roman;
+    prefix: "(";
+    suffix: ") ";
+  }
+
+  @counter-style decimal-paren {
+    system: extends decimal;
+    prefix: "(";
+    suffix: ") ";
+  }
+
+  div {
+    @apply m-0;
+  }
+
+  ol {
+    @apply list-none text-justify;
+  }
+
+  ol.number-dot {
+    counter-reset: number-dot-counter;
+    @apply pl-0;
+
+    & > li {
+      counter-increment: number-dot-counter;
+    }
+
+    & > li::before {
+      content: counter(number-dot-counter) ".";
+      @apply inline-block w-8;
+    }
+  }
+
+  ol.number-dot.extended-marker-space > li::before {
+    @apply w-10;
+  }
+
+  ol.latin-paren {
+    counter-reset: latin-paren-counter;
+    @apply pl-8;
+
+    & > li {
+      counter-increment: latin-paren-counter;
+      @apply relative;
+    }
+
+    & > li::before {
+      content: "(" counter(latin-paren-counter, lower-latin) ")";
+      @apply absolute -left-8;
+    }
+  }
+
+  ol.latin-paren.extended-marker-space {
+    @apply pl-10;
+
+    & > li::before {
+      @apply -left-10;
+    }
+  }
+
+  ol.roman-paren {
+    counter-reset: roman-paren-counter;
+    @apply pl-8;
+
+    & > li {
+      counter-increment: roman-paren-counter;
+      @apply relative;
+    }
+
+    & > li::before {
+      content: "(" counter(roman-paren-counter, lower-roman) ")";
+      @apply absolute -left-8;
+    }
+  }
+
+  ol.roman-paren.extended-marker-space {
+    @apply pl-10;
+
+    & > li::before {
+      @apply -left-10;
+    }
+  }
+
+  ol.number-paren {
+    counter-reset: number-paren-counter;
+    @apply pl-8;
+
+    & > li {
+      counter-increment: number-paren-counter;
+      @apply relative;
+    }
+
+    & > li::before {
+      content: "(" counter(number-paren-counter) ")";
+      @apply absolute -left-8;
+    }
+  }
+
+  ol.number-paren.extended-marker-space {
+    @apply pl-10;
+
+    & > li::before {
+      @apply -left-10;
+    }
+  }
+
+  /* Define blinking animation */
+  @keyframes blink-highlight {
+    0% {
+      background-color: var(--color-accent-500);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+
+  /* Apply animation when element is targeted */
+  :target {
+    animation: blink-highlight 1s ease-out;
+  }
+</style>

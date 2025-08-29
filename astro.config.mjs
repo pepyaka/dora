@@ -43,6 +43,10 @@ export default defineConfig({
           label: "Regulations",
           autogenerate: { directory: "regulations" },
         },
+        {
+          label: "Contributing",
+          link: "contributing",
+        },
       ],
       pagination: false,
       editLink: {
@@ -52,7 +56,8 @@ export default defineConfig({
       components: {
         Sidebar: "./src/components/Sidebar.astro",
         TableOfContents: "./src/components/conditional/TableOfContents.astro",
-        MobileTableOfContents: "./src/components/conditional/MobileTableOfContents.astro",
+        MobileTableOfContents:
+          "./src/components/conditional/MobileTableOfContents.astro",
         MarkdownContent: "./src/components/conditional/MarkdownContent.astro",
       },
       plugins: [starlightScrollToTop()],

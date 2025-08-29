@@ -1,7 +1,7 @@
 import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
 import { docsLoader } from "@astrojs/starlight/loaders";
 import { docsSchema } from "@astrojs/starlight/schema";
+import { loaderWrapper } from "./lib/regulations";
 
 const docs = defineCollection({
   loader: docsLoader(),
@@ -11,31 +11,15 @@ const docs = defineCollection({
         pageArticleStart: z.optional(z.number()),
       })),
     }),
-  }),
+  })
 });
 
-const regulations = defineCollection({
-  loader: glob({
-    pattern: ["*/*.mdx"],
-    base: "./src/content/docs/regulations",
-  }),
-  schema: docsSchema({
-    extend: z.object({
-      sidebar: z.object({
-        order: z.number().int()
-      }),
-      tableOfContents: z
-        .union([
-          z.object({
-            minHeadingLevel: z.number().int().min(2).max(4),
-          }),
-          z.boolean().transform(Boolean),
-        ]),
-    }),
-  }),
-});
+// const regulations = defineCollection({
+//   loader: regulationsLoader(),
+//   schema: regulationsSchema(),
+// });
 
 export const collections = {
   docs,
-  regulations,
+  // regulations,
 };

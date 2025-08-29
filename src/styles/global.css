@@ -3,3 +3,8 @@
 @import "@astrojs/starlight-tailwind";
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
+
+.inline-icon {
+	display: inline;
+	color: var(--sl-color-accent);
+}

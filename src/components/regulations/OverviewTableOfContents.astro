@@ -21,11 +21,9 @@ if (!slug?.endsWith("/overview")) {
   );
 }
 
-const regPathPrefix = slug
-  ?.replace("regulations/", "")
-  .replace("/overview", "");
+const regPathPrefix = slug.replace("/overview", "");
 
-const collectionEntries = await getCollection("regulations", (data) => {
+const collectionEntries = await getCollection("docs", (data) => {
   return (
     data.id.startsWith(regPathPrefix) &&
     !data.id.endsWith("/overview") &&
@@ -46,7 +44,7 @@ const regEntries = await Promise.all(
 );
 
 // sort file entries according sidebar
-regEntries.sort((a, b) => a.data.sidebar.order - b.data.sidebar.order);
+regEntries.sort((a, b) => a.data.sidebar.order! - b.data.sidebar.order!);
 
 let titleNumber = 0;
 let chapterNumber = 0;
@@ -82,7 +80,7 @@ regEntries.forEach(({ id, data: { title, tableOfContents }, headings }) => {
       ({ minHeadingLevel }) => minHeadingLevel - 1,
     )
     .otherwise(() => HeadingLevel.TITLE);
-  const pageSlug = "/regulations/" + id;
+  const pageSlug = "/" + id;
   entries.push({
     level: pageHeadingLevel,
     number: incrementLevelNumber(pageHeadingLevel),
