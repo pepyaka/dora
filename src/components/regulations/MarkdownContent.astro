@@ -1,19 +1,23 @@
 ---
 import OriginMarkdownContent from "@astrojs/starlight/components/MarkdownContent.astro";
 import * as cheerio from "cheerio";
+import { slug } from "github-slugger";
 import { Aside } from "@astrojs/starlight/components";
+import { slugToLabel } from "../../lib/regulations";
 
-interface Props {
-  articleCounterInitialValue: number;
-}
-
-const { articleCounterInitialValue } = Astro.props;
-const articleCounter = articleCounterInitialValue - 1;
+const { title } = Astro.locals.starlightRoute.entry.data;
 
 const html = await Astro.slots.render("default");
 const $ = cheerio.load(html, null, false);
 
-const lineRe = /^(?<marker>\(\w+\))\s*(?<text>.+)/;
+// Add Article, Chapter or Title to headers
+$("h2, h3, h4").each(function () {
+  const id = $(this).attr("id");
+  if (id) {
+    const label = slugToLabel(id);
+    $(this).wrapInner("<span>").prepend(`<span>${label}</span>`);
+  }
+});
 
 // Removing newline (in html looks like whitespace) before <p>
 $("ol > li").each(function () {
@@ -22,14 +26,63 @@ $("ol > li").each(function () {
 });
 
 // Replace single item line with splitted marker + text
+const markedItemRe = /^(?<marker>\(\w+\))\s*(?<text>.+)/;
+
+// Format all <ul> markers
 $("ul > li").each(function () {
-  const line = $(this).text().trim();
-  const match = line.match(lineRe);
-  if (match?.groups) {
-    const { marker, text } = match.groups;
-    $(this).children(":not(ul)").remove();
-    $(this).prepend(`<div><span>${marker}</span><span>${text}</span></div>`);
-  }
+  let marker = "",
+    text = "";
+  $(this)
+    .contents()
+    .each(function () {
+      const isTextNode =
+        this.type === "text" && this.nodeValue.trim().length > 0;
+      const isPNode = $(this).is("p");
+      if (isTextNode) {
+        const textNodeMatch = $(this).text().match(markedItemRe);
+        if (textNodeMatch?.groups) {
+          ({ marker, text } = textNodeMatch.groups);
+          this.data = text;
+          return false;
+        }
+      } else if (isPNode) {
+        const pNodeMatch = $(this).html()?.match(markedItemRe);
+        if (pNodeMatch?.groups) {
+          ({ marker, text } = pNodeMatch.groups);
+          $(this).html(text);
+          return false;
+        }
+      }
+    });
+
+  // Wrap current content as <div>
+  $(this).wrapInner(`<div></div>`);
+  // Insert marker <div> before content
+  $(this).prepend(`<div>${marker}</div>`);
+});
+
+// Set id for each <li>, exlude footnotes
+$("li:not(section.footnotes > ol > li)").each(function () {
+  const $parents = $(this).parents();
+  const ids = $(this)
+    .add($parents)
+    .map(function () {
+      if ($(this).is("ol > li")) {
+        return ($(this).index() + 1).toString();
+      }
+      if ($(this).is("ul > li")) {
+        return slug($(this).children("div").first().text());
+      }
+    })
+    .toArray();
+  const articleSlug =
+    $parents
+      .last()
+      .prevAll(".sl-heading-wrapper")
+      .first()
+      .find("[id]")
+      .attr("id") || slug(title);
+  $(this).attr("id", articleSlug + "-" + ids.join("-"));
 });
 ---
 
@@ -45,7 +98,7 @@ $("ul > li").each(function () {
   </Aside>
 </div>
 
-<style is:global define:vars={{ articleCounter }}>
+<style is:global>
   @layer base, starlight, theme, components, utilities;
 
   @import "@astrojs/starlight-tailwind";
@@ -53,29 +106,27 @@ $("ul > li").each(function () {
   @import "tailwindcss/utilities.css" layer(utilities);
 
   .regulation-markdown-content {
-    counter-reset: chapter-counter 0 section-counter 0 article-counter
-      var(--articleCounter);
-
-    & h2 {
-      counter-reset: section-counter 0;
-    }
-
-    & h2:before {
-      content: "Chapter " counter(chapter-counter, upper-roman);
-      counter-increment: chapter-counter;
+    /* Chapter */
+    & h2 > span:first-child {
       @apply block text-accent-700 text-xl md:text-3xl w-max border-b-4 border-b-gray-500 mb-2;
     }
 
-    & h3:before {
-      content: "Section " counter(section-counter, upper-roman);
-      counter-increment: section-counter;
+    /* Section */
+    & h3 > span:first-child {
       @apply block text-accent-700 text-lg md:text-2xl w-max border-b-2 border-b-gray-500 mb-2;
     }
 
-    & h4:before {
-      content: "Article " counter(article-counter);
-      counter-increment: article-counter;
+    & h3:has(span:nth-child(2):empty) > span:first-child {
+      @apply inline;
+    }
+
+    /* Article */
+    & h4 > span:first-child {
       @apply block text-accent-700 text-base md:text-xl w-max border-b-1 border-b-gray-500 mb-2;
+    }
+
+    & .sl-heading-wrapper:has(> h1, > h2, > h3, > h4, > h5, > h6) {
+      margin-top: 1.5em;
     }
 
     & > aside {
@@ -94,7 +145,7 @@ $("ul > li").each(function () {
       & > li {
         counter-increment: number-dot-counter;
 
-        & > p {
+        & > p:first-child {
           @apply inline mt-0;
         }
       }
@@ -107,19 +158,14 @@ $("ul > li").each(function () {
 
     /* <ul> only could marked like: (a), (iv), (12) */
     & ul {
-      @apply list-none text-justify mt-2 pl-8;
+      @apply list-none text-justify mt-2 pl-0;
 
-      & li > div:first-of-type {
-        @apply flex;
-        & > span:nth-of-type(1) {
-          @apply basis-8 shrink-0 text-nowrap;
+      & li {
+        @apply flex gap-x-2;
+        & > :first-child {
+          @apply basis-6 shrink-0 text-nowrap;
         }
       }
-    }
-
-    /* latin in paretheses */
-    & ul:not(ul ul) {
-      @apply pl-0 mb-8;
     }
   }
 

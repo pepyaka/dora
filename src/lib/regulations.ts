@@ -61,7 +61,7 @@ export function loaderWrapper(loader: Loader): Loader {
         for (const [_id, dataEntry] of entries) {
           if (filePath.endsWith(dataEntry.filePath || "")) {
             const { id, data } = dataEntry;
-            console.log("CHANGE", dataEntry)
+            // console.log("CHANGE", dataEntry)
             if (id.startsWith("regulations")) {
               const body = dataEntry.body!.replace(listMarkerRe, replacer);
               const rendered = await renderMarkdown(body);
@@ -74,8 +74,7 @@ export function loaderWrapper(loader: Loader): Loader {
               });
             }
           }
-            
-          }
+        }
       });
     },
   };
@@ -137,4 +136,19 @@ export function regulationsSchema() {
       })),
     }),
   });
+}
+
+export function slugToLabel(slug: string): string {
+  if (slug.length !== 0) {
+    const parts = slug.split("-");
+    let [label, num] = parts;
+    if (parts.length > 2 || !label || !num) {
+      console.error(`MALFORMED SLUG: ${slug}`)
+      return slug;
+    }
+    label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
+    num = num.toUpperCase();
+    return label + " " + num;
+  }
+  return "EMPTY";
 }

@@ -8,3 +8,7 @@
 	display: inline;
 	color: var(--sl-color-accent);
 }
+
+:root {
+  --sl-sidebar-width: 22.75rem;
+}

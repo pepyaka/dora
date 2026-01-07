@@ -1,12 +1,13 @@
 ---
 import OriginMobileTableOfContents from "@astrojs/starlight/components/MobileTableOfContents.astro";
-import RegulationsMobileTableOfContents from "../regulations/MobileTableOfContents.astro";
+import RegulationsMobileTableOfContents from "./regulations/MobileTableOfContents.astro";
 
-const pageArticleStart =
-  Astro.locals.starlightRoute.entry.data.regulation?.pageArticleStart;
+const id = Astro.locals.starlightRoute.id;
+const isRegulationsContent =
+  id.startsWith("regulations") && id !== "regulations/overview";
 
 let ActiveMobileTableOfContents;
-if (pageArticleStart) {
+if (isRegulationsContent) {
   ActiveMobileTableOfContents = RegulationsMobileTableOfContents;
 } else {
   ActiveMobileTableOfContents = OriginMobileTableOfContents;

@@ -1,33 +1,26 @@
 ---
-import romans from "romans";
-import { HeadingLevel, type ExtTocItem } from "../TableOfContents.astro";
+import { slugToLabel } from "../../../lib/regulations";
+import type { TocItem } from "@starlight/utils/generateToC";
 
 interface Props {
-	extTocItems: ExtTocItem[];
+	toc: TocItem[];
 	depth?: number;
 	isMobile?: boolean;
 }
 
-const { extTocItems, isMobile = false, depth = 0 } = Astro.props;
+const { toc, isMobile = false, depth = 0 } = Astro.props;
 ---
 
 <ul class:list={{ isMobile }}>
 	{
-		extTocItems.map(({ headingLevel: level, slug, children, text, offset }) => (
+		toc.map(({ slug, children, text }) => (
 			<li>
 				<a href={"#" + slug}>
-					{slug !== "_top" && (
-						<h4>
-							{HeadingLevel[level]}
-							{level !== HeadingLevel.Article
-								? romans.romanize(offset)
-								: offset}
-						</h4>
-					)}
+					{slug !== "_top" && <h4>{slugToLabel(slug)}</h4>}
 					<span>{text}</span>
 				</a>
 				{children.length > 0 && (
-					<Astro.self extTocItems={children} depth={depth + 1} {isMobile} />
+					<Astro.self toc={children} depth={depth + 1} {isMobile} />
 				)}
 			</li>
 		))

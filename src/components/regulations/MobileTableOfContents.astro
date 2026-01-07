@@ -1,13 +1,8 @@
 ---
 import { Icon } from "@astrojs/starlight/components";
 import TableOfContentsList from "./TableOfContents/TableOfContentsList.astro";
-import { genExtTocItems } from "./TableOfContents.astro";
 
 const { toc, entry } = Astro.locals.starlightRoute;
-
-const articleNumber = entry.data.regulation?.pageArticleStart || 0;
-
-const extTocItems = genExtTocItems(toc?.items || [], articleNumber);
 ---
 
 {
@@ -26,7 +21,7 @@ const extTocItems = genExtTocItems(toc?.items || [], articleNumber);
 						<span class="display-current" />
 					</summary>
 					<div class="dropdown">
-						<TableOfContentsList {extTocItems} isMobile />
+						<TableOfContentsList toc={toc.items} isMobile />
 					</div>
 				</details>
 			</nav>

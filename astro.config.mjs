@@ -36,12 +36,44 @@ export default defineConfig({
           link: "lifecycle",
         },
         {
-          label: "Templates",
-          autogenerate: { directory: "templates" },
+          label: "Regulations",
+          items: [
+            {
+              label: "Digital Operational Resilience Act",
+              badge: "Regulation (EU) 2022/2554",
+              autogenerate: {
+                directory: "regulations/Digital Operational Resilience Act",
+              },
+            },
+            {
+              label: "DORA Amendments Directive",
+              badge: "Directive (EU) 2022/2556",
+              collapsed: true,
+              autogenerate: {
+                directory: "regulations/DORA Amendments Directive",
+              },
+            },
+            {
+              label: "ICT Risk Framework RTS",
+              badge: "Commission Delegated Regulation (EU) 2024/1774",
+              collapsed: true,
+              autogenerate: {
+                directory: "regulations/ICT Risk Framework RTS",
+              },
+            },
+            {
+              label: "ICT Incidents Classification",
+              badge: "Commission Delegated Regulation (EU) 2024/1772",
+              collapsed: true,
+              autogenerate: {
+                directory: "regulations/ICT Incidents Classification",
+              },
+            },
+          ],
         },
         {
-          label: "Regulations",
-          autogenerate: { directory: "regulations" },
+          label: "Templates",
+          autogenerate: { directory: "templates", collapsed: true },
         },
         {
           label: "Contributing",
@@ -55,10 +87,9 @@ export default defineConfig({
       lastUpdated: true,
       components: {
         Sidebar: "./src/components/Sidebar.astro",
-        TableOfContents: "./src/components/conditional/TableOfContents.astro",
-        MobileTableOfContents:
-          "./src/components/conditional/MobileTableOfContents.astro",
-        MarkdownContent: "./src/components/conditional/MarkdownContent.astro",
+        TableOfContents: "./src/components/TableOfContents.astro",
+        MobileTableOfContents: "./src/components/MobileTableOfContents.astro",
+        MarkdownContent: "./src/components/MarkdownContent.astro",
       },
       plugins: [starlightScrollToTop()],
     }),

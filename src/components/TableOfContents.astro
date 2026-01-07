@@ -1,12 +1,13 @@
 ---
 import OriginTableOfContents from "@astrojs/starlight/components/TableOfContents.astro";
-import RegulationsTableOfContents from "../regulations/TableOfContents.astro";
+import RegulationsTableOfContents from "./regulations/TableOfContents.astro";
 
-const pageArticleStart =
-  Astro.locals.starlightRoute.entry.data.regulation?.pageArticleStart;
+const id = Astro.locals.starlightRoute.id;
+const isRegulationsContent =
+  id.startsWith("regulations") && id !== "regulations/overview";
 
 let ActiveTableOfContents;
-if (pageArticleStart) {
+if (isRegulationsContent) {
   ActiveTableOfContents = RegulationsTableOfContents;
 } else {
   ActiveTableOfContents = OriginTableOfContents;
