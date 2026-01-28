@@ -41,16 +41,9 @@ export default defineConfig({
             {
               label: "Digital Operational Resilience Act",
               badge: "Regulation (EU) 2022/2554",
-              autogenerate: {
-                directory: "regulations/Digital Operational Resilience Act",
-              },
-            },
-            {
-              label: "DORA Amendments Directive",
-              badge: "Directive (EU) 2022/2556",
               collapsed: true,
               autogenerate: {
-                directory: "regulations/DORA Amendments Directive",
+                directory: "regulations/Digital Operational Resilience Act",
               },
             },
             {
