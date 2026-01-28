@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.37.2",
+    "@astrojs/starlight": "^0.37.4",
     "@astrojs/starlight-tailwind": "^4.0.2",
     "@tailwindcss/vite": "^4.1.11",
     "@types/mdast": "^4.0.4",
-    "astro": "^5.16.7",
+    "astro": "^5.16.16",
     "cheerio": "^1.1.2",
     "mdast": "^3.0.0",
     "remark-custom-heading-id": "^2.0.0",
