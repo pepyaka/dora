@@ -3,13 +3,15 @@ import { match, Pattern } from "ts-pattern";
 import romans from "romans";
 
 import { getCollection, render } from "astro:content";
-import { HeadingLevel } from "./TableOfContents.astro";
+import { slugToLabel } from "/src/lib/regulations";
+// import { HeadingLevel } from "./TableOfContents.astro";
 
 type OverviewTocEntry = {
-  level: HeadingLevel;
-  number: number;
-  text: string;
+  // level: HeadingLevel;
+  label: string;
   slug: string;
+  entryType: string;
+  text: string;
 };
 
 const { slug } = Astro.params;
@@ -21,11 +23,9 @@ if (!slug?.endsWith("/overview")) {
   );
 }
 
-const regPathPrefix = slug
-  ?.replace("regulations/", "")
-  .replace("/overview", "");
+const regPathPrefix = slug.replace("/overview", "");
 
-const collectionEntries = await getCollection("regulations", (data) => {
+const collectionEntries = await getCollection("docs", (data) => {
   return (
     data.id.startsWith(regPathPrefix) &&
     !data.id.endsWith("/overview") &&
@@ -46,70 +46,70 @@ const regEntries = await Promise.all(
 );
 
 // sort file entries according sidebar
-regEntries.sort((a, b) => a.data.sidebar.order - b.data.sidebar.order);
+regEntries.sort((a, b) => a.data.sidebar.order! - b.data.sidebar.order!);
 
-let titleNumber = 0;
-let chapterNumber = 0;
-let sectionNumber = 0;
-let articleNumber = 0;
+// const entries = regEntries.flatMap((e) => e.headings);
+// let titleNumber = 0;
+// let chapterNumber = 0;
+// let sectionNumber = 0;
+// let articleNumber = 0;
 
-function incrementLevelNumber(level: HeadingLevel): number {
-  switch (level) {
-    case HeadingLevel.TITLE:
-      titleNumber += 1;
-      return titleNumber;
-    case HeadingLevel.Chapter:
-      chapterNumber += 1;
-      return chapterNumber;
-    case HeadingLevel.Section:
-      sectionNumber += 1;
-      return sectionNumber;
-    case HeadingLevel.Article:
-      articleNumber += 1;
-      return articleNumber;
-    default:
-      return 0;
-  }
-}
+// function incrementLevelNumber(level: HeadingLevel): number {
+//   switch (level) {
+//     case HeadingLevel.TITLE:
+//       titleNumber += 1;
+//       return titleNumber;
+//     case HeadingLevel.Chapter:
+//       chapterNumber += 1;
+//       return chapterNumber;
+//     case HeadingLevel.Section:
+//       sectionNumber += 1;
+//       return sectionNumber;
+//     case HeadingLevel.Article:
+//       articleNumber += 1;
+//       return articleNumber;
+//     default:
+//       return 0;
+//   }
+// }
 
 const entries: OverviewTocEntry[] = [];
 
-regEntries.forEach(({ id, data: { title, tableOfContents }, headings }) => {
-  // Page heading level is always one level higher than highest on the page
-  const pageHeadingLevel = match(tableOfContents)
-    .with(
-      { minHeadingLevel: Pattern.number },
-      ({ minHeadingLevel }) => minHeadingLevel - 1,
-    )
-    .otherwise(() => HeadingLevel.TITLE);
-  const pageSlug = "/regulations/" + id;
+regEntries.forEach(({ id, data: { title }, headings }) => {
+  //   // Page heading level is always one level higher than highest on the page
+  //   const pageHeadingLevel = match(tableOfContents)
+  //     .with(
+  //       { minHeadingLevel: Pattern.number },
+  //       ({ minHeadingLevel }) => minHeadingLevel - 1,
+  //     )
+  //     .otherwise(() => HeadingLevel.TITLE);
+  //   const pageSlug = "/" + id;
+  const slugParts = id.split("/");
+  const label = slugToLabel(slugParts[slugParts.length - 1]);
+  const entryType = (label.split(" ")[0] || "").toLowerCase();
   entries.push({
-    level: pageHeadingLevel,
-    number: incrementLevelNumber(pageHeadingLevel),
+    label,
+    slug: id,
+    entryType,
     text: title,
-    slug: pageSlug,
   });
 
-  // reset parts numbering on the page
-  if (pageHeadingLevel < HeadingLevel.Chapter) {
-    chapterNumber = 0;
-  }
-  if (pageHeadingLevel < HeadingLevel.Section) {
-    sectionNumber = 0;
-  }
+  //   // reset parts numbering on the page
+  //   if (pageHeadingLevel < HeadingLevel.Chapter) {
+  //     chapterNumber = 0;
+  //   }
+  //   if (pageHeadingLevel < HeadingLevel.Section) {
+  //     sectionNumber = 0;
+  //   }
 
   // push page's data
-  headings.forEach(({ depth: level, text, slug }) => {
-    if (level > 4) {
-      throw Error(
-        `Heading tags should be in range h4..h2 (including markdown). Found h${level} (#${slug}) at ${id}`,
-      );
-    }
+  headings.forEach(({ text, slug }) => {
+    const label = slugToLabel(slug);
     entries.push({
-      level,
-      number: incrementLevelNumber(level),
+      label,
+      slug: id + "#" + slug,
+      entryType: (label.split(" ")[0] || "").toLowerCase(),
       text,
-      slug: pageSlug + "#" + slug,
     });
   });
 });
@@ -117,23 +117,16 @@ regEntries.forEach(({ id, data: { title, tableOfContents }, headings }) => {
 
 <div class="overview-toc-content">
   {
-    entries.map(({ level, number, text, slug }) => (
+    entries.map(({ label, slug, entryType, text }) => (
       <div class="overview-toc-item">
-        <a
-          class={HeadingLevel[level].toLocaleLowerCase() + "-number"}
-          href={slug}
-        >
-          {HeadingLevel[level]}
-          {level !== HeadingLevel.Article ? romans.romanize(number) : number}
+        <a class={entryType + "-number"} href={"/" + slug}>
+          {label}
         </a>
-        <span class={HeadingLevel[level].toLocaleLowerCase() + "-text"}>
-          {text}
-        </span>
+        <span class={entryType + "-text"}>{text}</span>
       </div>
     ))
   }
 </div>
-
 <style>
   @layer base, starlight, theme, components, utilities;
 

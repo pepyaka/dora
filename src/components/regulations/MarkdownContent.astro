@@ -1,18 +1,94 @@
 ---
 import OriginMarkdownContent from "@astrojs/starlight/components/MarkdownContent.astro";
+import * as cheerio from "cheerio";
+import { slug } from "github-slugger";
 import { Aside } from "@astrojs/starlight/components";
+import { slugToLabel } from "../../lib/regulations";
 
-interface Props {
-  articleCounterInitialValue: number;
-}
+const { title } = Astro.locals.starlightRoute.entry.data;
 
-const { articleCounterInitialValue } = Astro.props;
-const articleCounter = articleCounterInitialValue - 1;
+const html = await Astro.slots.render("default");
+const $ = cheerio.load(html, null, false);
+
+// Add Article, Chapter or Title to headers
+$("h2, h3, h4").each(function () {
+  const id = $(this).attr("id");
+  if (id) {
+    const label = slugToLabel(id);
+    $(this).wrapInner("<span>").prepend(`<span>${label}</span>`);
+  }
+});
+
+// Removing newline (in html looks like whitespace) before <p>
+$("ol > li").each(function () {
+  const first = $(this).children("p").first().remove();
+  $(this).prepend(first);
+});
+
+// Replace single item line with splitted marker + text
+const markedItemRe = /^(?<marker>\(\w+\))\s*(?<text>.+)/;
+
+// Format all <ul> markers
+$("ul > li").each(function () {
+  let marker = "",
+    text = "";
+  $(this)
+    .contents()
+    .each(function () {
+      const isTextNode =
+        this.type === "text" && this.nodeValue.trim().length > 0;
+      const isPNode = $(this).is("p");
+      if (isTextNode) {
+        const textNodeMatch = $(this).text().match(markedItemRe);
+        if (textNodeMatch?.groups) {
+          ({ marker, text } = textNodeMatch.groups);
+          this.data = text;
+          return false;
+        }
+      } else if (isPNode) {
+        const pNodeMatch = $(this).html()?.match(markedItemRe);
+        if (pNodeMatch?.groups) {
+          ({ marker, text } = pNodeMatch.groups);
+          $(this).html(text);
+          return false;
+        }
+      }
+    });
+
+  // Wrap current content as <div>
+  $(this).wrapInner(`<div></div>`);
+  // Insert marker <div> before content
+  $(this).prepend(`<div>${marker}</div>`);
+});
+
+// Set id for each <li>, exlude footnotes
+$("li:not(section.footnotes > ol > li)").each(function () {
+  const $parents = $(this).parents();
+  const ids = $(this)
+    .add($parents)
+    .map(function () {
+      if ($(this).is("ol > li")) {
+        return ($(this).index() + 1).toString();
+      }
+      if ($(this).is("ul > li")) {
+        return slug($(this).children("div").first().text());
+      }
+    })
+    .toArray();
+  const articleSlug =
+    $parents
+      .last()
+      .prevAll(".sl-heading-wrapper")
+      .first()
+      .find("[id]")
+      .attr("id") || slug(title);
+  $(this).attr("id", articleSlug + "-" + ids.join("-"));
+});
 ---
 
 <div class="regulation-markdown-content">
   <OriginMarkdownContent>
-    <slot />
+    <Fragment set:html={$.html()} />
   </OriginMarkdownContent>
   <Aside>
     This text is provided solely for documentation and informational purposes
@@ -22,87 +98,89 @@ const articleCounter = articleCounterInitialValue - 1;
   </Aside>
 </div>
 
-<style is:global define:vars={{ articleCounter }}>
+<style is:global>
   @layer base, starlight, theme, components, utilities;
 
   @import "@astrojs/starlight-tailwind";
   @import "tailwindcss/theme.css" layer(theme);
   @import "tailwindcss/utilities.css" layer(utilities);
 
-  @counter-style reg-lower-roman {
-    system: extends lower-roman;
-    prefix: "(";
-    suffix: ") ";
-  }
-
-  @counter-style reg-lower-latin {
-    system: extends lower-latin;
-    prefix: "(";
-    suffix: ") ";
-  }
-
   .regulation-markdown-content {
-    & .sl-markdown-content {
-      counter-reset: chapter-counter 0 section-counter 0 article-counter
-        var(--articleCounter);
-    }
-
-    & .sl-heading-wrapper > h2 {
-      counter-reset: section-counter 0;
-    }
-
-    & .sl-heading-wrapper > h2:before {
-      content: "Chapter " counter(chapter-counter, upper-roman);
-      counter-increment: chapter-counter;
+    /* Chapter */
+    & h2 > span:first-child {
       @apply block text-accent-700 text-xl md:text-3xl w-max border-b-4 border-b-gray-500 mb-2;
     }
 
-    & .sl-heading-wrapper > h3:before {
-      content: "Section " counter(section-counter, upper-roman);
-      counter-increment: section-counter;
+    /* Section */
+    & h3 > span:first-child {
       @apply block text-accent-700 text-lg md:text-2xl w-max border-b-2 border-b-gray-500 mb-2;
     }
 
-    & .sl-heading-wrapper > h4:before {
-      content: "Article " counter(article-counter);
-      counter-increment: article-counter;
+    & h3:has(span:nth-child(2):empty) > span:first-child {
+      @apply inline;
+    }
+
+    /* Article */
+    & h4 > span:first-child {
       @apply block text-accent-700 text-base md:text-xl w-max border-b-1 border-b-gray-500 mb-2;
     }
 
-    & .sl-markdown-content > ol {
-      @apply list-inside p-0;
-
-      & > li > p {
-        @apply inline;
-      }
-
-      & > li > ol {
-        @apply list-[reg-lower-latin] list-outside mt-0.25 pl-5;
-
-        & > li {
-          @apply pl-2;
-        }
-
-        & > li > p {
-          @apply inline;
-        }
-
-        & > li > ol {
-          @apply list-[reg-lower-roman] list-outside pl-5;
-
-          & > li {
-            @apply pl-2;
-          }
-
-          & > li > p {
-            @apply inline;
-          }
-        }
-      }
+    & .sl-heading-wrapper:has(> h1, > h2, > h3, > h4, > h5, > h6) {
+      margin-top: 1.5em;
     }
 
     & > aside {
       @apply mt-12;
+    }
+
+    & div {
+      @apply m-0;
+    }
+
+    /* ordered list is only top level markered as '1.' */
+    & ol {
+      counter-reset: number-dot-counter;
+      @apply pl-0 mb-8 list-none text-justify;
+
+      & > li {
+        counter-increment: number-dot-counter;
+
+        & > p:first-child {
+          @apply inline mt-0;
+        }
+      }
+
+      & > li::before {
+        content: counter(number-dot-counter) ".";
+        @apply inline-block w-8;
+      }
+    }
+
+    /* <ul> only could marked like: (a), (iv), (12) */
+    & ul {
+      @apply list-none text-justify mt-2 pl-0;
+
+      & li {
+        @apply flex gap-x-2;
+        & > :first-child {
+          @apply basis-6 shrink-0 text-nowrap;
+        }
+      }
+    }
+  }
+
+  /* Apply animation when element is targeted */
+  :target {
+    animation: blink-highlight 1s ease-out;
+  }
+
+  /* Define blinking animation */
+  @keyframes blink-highlight {
+    0% {
+      background-color: var(--color-accent-500);
+    }
+    100% {
+      background-color: transparent;
     }
   }
 </style>

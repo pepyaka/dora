@@ -1,58 +1,58 @@
 ---
 import TableOfContentsList from "./TableOfContents/TableOfContentsList.astro";
-import type { TocItem } from "@starlight/utils/generateToC";
+// import type { TocItem } from "@starlight/utils/generateToC";
 
-export enum HeadingLevel {
-	TITLE = 1,
-	Chapter = 2,
-	Section = 3,
-	Article = 4,
-}
+// export enum HeadingLevel {
+// 	TITLE = 1,
+// 	Chapter = 2,
+// 	Section = 3,
+// 	Article = 4,
+// }
 
-export type ExtTocItem = {
-	headingLevel: HeadingLevel;
-	offset: number;
-	slug: string;
-	text: string;
-	children: ExtTocItem[];
-};
+// export type ExtTocItem = {
+// 	headingLevel: HeadingLevel;
+// 	offset: number;
+// 	slug: string;
+// 	text: string;
+// 	children: ExtTocItem[];
+// };
 
-const { toc, entry } = Astro.locals.starlightRoute;
+const { toc } = Astro.locals.starlightRoute;
 
-const articleNumber = entry.data.regulation?.pageArticleStart || 0;
+// const articleNumber = 0;
 
-export function genExtTocItems(
-	tocItems: TocItem[] = [],
-	articleNumber: number,
-): ExtTocItem[] {
-	function enumerateRegParts(tocItems: TocItem[]): ExtTocItem[] {
-		return tocItems.map(({ depth, children, slug, text }, n) => {
-			let offset;
-			// depth == 4 is Article depth
-			if (depth === 4) {
-				offset = articleNumber;
-				articleNumber += 1;
-			} else {
-				offset = n + 1;
-			}
-			return {
-				headingLevel: depth,
-				offset,
-				slug,
-				text,
-				children: enumerateRegParts(children),
-			};
-		});
-	}
+// export function genExtTocItems(
+// 	tocItems: TocItem[] = [],
+// 	articleNumber: number,
+// ): ExtTocItem[] {
+// 	function enumerateRegParts(tocItems: TocItem[]): ExtTocItem[] {
+// 		return tocItems.map(({ depth, children, slug, text }, n) => {
+// 			let offset;
+// 			// depth == 4 is Article depth
+// 			if (depth === 4) {
+// 				offset = articleNumber;
+// 				articleNumber += 1;
+// 			} else {
+// 				offset = n + 1;
+// 			}
+// 			return {
+// 				headingLevel: depth,
+// 				offset,
+// 				slug,
+// 				text,
+// 				children: enumerateRegParts(children),
+// 			};
+// 		});
+// 	}
 
-	if (tocItems.length > 1) {
-		return enumerateRegParts(tocItems.slice(1));
-	} else {
-		return enumerateRegParts(tocItems[0].children);
-	}
-}
+// 	if (tocItems.length > 1) {
+// 		return enumerateRegParts(tocItems.slice(1));
+// 	} else {
+// 		return enumerateRegParts(tocItems[0].children);
+// 	}
+// }
 
-const extTocItems = genExtTocItems(toc?.items, articleNumber);
+// const extTocItems = genExtTocItems(toc?.items, articleNumber);
 ---
 
 {
@@ -65,7 +65,7 @@ const extTocItems = genExtTocItems(toc?.items, articleNumber);
 				<h2 id="starlight__on-this-page">
 					{Astro.locals.t("tableOfContents.onThisPage")}
 				</h2>
-				<TableOfContentsList {extTocItems} />
+				<TableOfContentsList toc={toc.items} />
 			</nav>
 		</starlight-toc>
 	)

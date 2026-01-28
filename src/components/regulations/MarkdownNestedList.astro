@@ -1,0 +1,139 @@
+---
+import { slug } from "github-slugger";
+import * as cheerio from "cheerio";
+import MarkdownSublist from "./MarkdownSublist.astro";
+
+export enum MarkerLevel {
+  Undefined = 0,
+  NumberDot = 1,
+  LatinParen = 2,
+  RomanParen = 3,
+  NumberParen = 4,
+}
+
+type PlainItem = {
+  level: MarkerLevel;
+  marker: string;
+  text: string;
+};
+
+export type NestedItem = {
+  fragment: string;
+  text: string;
+  children: NestedItem[];
+};
+
+interface Props {
+  fragmentPrefix: string;
+}
+// <li> id formatter
+const { fragmentPrefix } = Astro.props;
+
+const html = await Astro.slots.render("default");
+const $ = cheerio.load(html);
+
+// RegExps
+const reNumberDot = /^(?<marker>\d+\.)\s*(?<text>.+)/;
+const reLatinParen = /^\s*(?<marker>\([a-z]\))\s*(?<text>.+)/;
+const reRomanParen =
+  /^\s*(?<marker>\(M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})\))\s*(?<text>.+)/i;
+const reNumberParen = /^\s*(?<marker>\([0-9]+\))\s*(?<text>.+)/;
+
+// '`' is before 'a'
+let prevLatinParenCharCode = "a".charCodeAt(0) - 1;
+
+const plainItems: PlainItem[] = [];
+
+// Create a plain items list
+$("p").each(function (n) {
+  const line = $(this).text();
+  const numberDotMatch = line.match(reNumberDot);
+  const latinParenMatch = line.match(reLatinParen);
+  const romanParenMatch = line.match(reRomanParen);
+  const numberParenMatch = line.match(reNumberParen);
+
+  let level: MarkerLevel, marker: string, text: string;
+
+  // marker like '4.'
+  if (numberDotMatch?.groups) {
+    ({ marker, text } = numberDotMatch.groups);
+    level = MarkerLevel.NumberDot;
+  }
+  // marker like '(d)'
+  else if (latinParenMatch?.groups) {
+    ({ marker, text } = latinParenMatch.groups);
+    const latinParenCharCode = marker.charCodeAt(1);
+    // latin and roman could have same letters
+    if (marker === "(a)" || latinParenCharCode - 1 === prevLatinParenCharCode) {
+      level = MarkerLevel.LatinParen;
+      prevLatinParenCharCode = latinParenCharCode;
+    } else {
+      level = MarkerLevel.RomanParen;
+    }
+  }
+  // marker like '(iv)'
+  else if (romanParenMatch?.groups) {
+    ({ marker, text } = romanParenMatch.groups);
+    level = MarkerLevel.RomanParen;
+  }
+  // marker like '(4)'
+  else if (numberParenMatch?.groups) {
+    ({ marker, text } = numberParenMatch.groups);
+    level = MarkerLevel.NumberParen;
+  }
+  // There should not be any other markers
+  else {
+    throw Error(`Mismatch correct patern line #${n}:\n${line}`);
+  }
+
+  plainItems.push({ level, marker, text });
+});
+
+// recursive function
+function buildNestedLists(
+  plainItems: PlainItem[],
+  nestedItems: NestedItem[],
+  currentLevel: MarkerLevel,
+  baseFragment: string,
+) {
+  while (plainItems.length > 0) {
+    const { level, marker, text } = plainItems[0];
+
+    // Higher-level marker → bubble up
+    if (level < currentLevel) {
+      break;
+    }
+
+    // Nested deeper
+    if (level > currentLevel) {
+      const { children, fragment } = nestedItems[nestedItems.length - 1];
+      buildNestedLists(plainItems, children, currentLevel + 1, fragment);
+      continue;
+    }
+
+    plainItems.shift();
+    // Same level → add as sibling
+    nestedItems.push({
+      fragment: baseFragment + "-" + slug(marker),
+      text,
+      children: [],
+    });
+  }
+}
+
+let nestedItems: NestedItem[] = [];
+
+const firstPlainItem = plainItems[0];
+const markerLevel = firstPlainItem.level;
+if (firstPlainItem) {
+  // First item sets inital level (you could not start with nested items)
+  buildNestedLists(
+    plainItems,
+    nestedItems,
+    firstPlainItem.level,
+    fragmentPrefix,
+  );
+}
+---
+
+<MarkdownSublist sublist={nestedItems} markerLevel={markerLevel} />
